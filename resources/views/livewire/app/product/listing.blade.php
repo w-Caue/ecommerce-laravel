@@ -22,7 +22,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <a href="#" class="ms-1 text-md font-bold text-neutral-600">Listagem</a>
+                    <a href="#" class="ms-1 text-md font-bold text-blue-500">Listagem</a>
                 </div>
             </li>
         </ol>
@@ -65,29 +65,51 @@
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
             <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
                 <table class="min-w-full text-left text-sm text-surface">
-                    <thead class="border-b border-neutral-300">
+                    <thead class="">
                         <tr x-cloak x-data="{ tooltip: 'nenhum' }" class="text-xs uppercase text-neutral-500">
-                            <th scope="col" class=" py-4">
+                            <th scope="col" class="py-2 rounded-l-xl">
                                 <div class="flex justify-center">
                                     <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
-                                        wire:click="sortBy('id')" x-on:mouseover="tooltip = 'id'"
+                                        wire:click="sortBy('orders.id')" x-on:mouseover="tooltip = 'id'"
                                         x-on:mouseleave="tooltip = 'nenhum'">
                                         @include('includes.icon-search', [
-                                            'field' => 'id',
+                                            'field' => 'orders.id',
                                         ])
                                         <h1 class="">Código</h1>
                                         @include('includes.icon-filter', [
-                                            'field' => 'id',
+                                            'field' => 'orders.id',
                                         ])
                                     </div>
 
                                     <div x-cloak x-show="tooltip === 'id'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-gray-50 border border-gray-200 rounded-xl">
+                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
                                         <p>Ordenar pelo o Código</p>
                                     </div>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-4">
+
+                            {{-- <th scope="col" class="px-6 py-2">
+                                <div class="flex justify-center">
+                                    <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
+                                        wire:click="sortBy('created_date')" x-on:mouseover="tooltip = 'date'"
+                                        x-on:mouseleave="tooltip = 'nenhum'">
+                                        @include('includes.icon-search', [
+                                            'field' => 'created_date',
+                                        ])
+                                        <h1 class="">Dt. Criação</h1>
+                                        @include('includes.icon-filter', [
+                                            'field' => 'created_date',
+                                        ])
+                                    </div>
+
+                                    <div x-cloak x-show="tooltip === 'date'" x-transition x-transition.duration.300ms
+                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
+                                        <p>Ordenar pelo a Data</p>
+                                    </div>
+                                </div>
+                            </th> --}}
+
+                            <th scope="col" class="px-6 py-2">
                                 <div class="flex justify-center">
                                     <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
                                         wire:click="sortBy('name')" x-on:mouseover="tooltip = 'name'"
@@ -102,12 +124,13 @@
                                     </div>
 
                                     <div x-cloak x-show="tooltip === 'name'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-gray-50 border border-gray-200 rounded-xl">
+                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
                                         <p>Ordenar pelo o Nome</p>
                                     </div>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-4">
+
+                            <th scope="col" class="px-6 py-2">
                                 <div class="flex justify-center">
                                     <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
                                         wire:click="sortBy('description')" x-on:mouseover="tooltip = 'description'"
@@ -123,12 +146,13 @@
 
                                     <div x-cloak x-show="tooltip === 'description'" x-transition
                                         x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-gray-50 border border-gray-200 rounded-xl">
-                                        <p>Ordenar pela Descrição</p>
+                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
+                                        <p>Ordenar pelo a Descrição</p>
                                     </div>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-4">
+
+                            <th scope="col" class="px-6 py-2">
                                 <div class="flex justify-center">
                                     <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
                                         wire:click="sortBy('price')" x-on:mouseover="tooltip = 'price'"
@@ -143,69 +167,67 @@
                                     </div>
 
                                     <div x-cloak x-show="tooltip === 'price'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-gray-50 border border-gray-200 rounded-xl">
+                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
                                         <p>Ordenar pelo o Preço</p>
                                     </div>
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-4">
-                                <div class="flex justify-center">
-                                    <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
-                                        wire:click="sortBy('stoky')" x-on:mouseover="tooltip = 'stoky'"
-                                        x-on:mouseleave="tooltip = 'nenhum'">
-                                        @include('includes.icon-search', [
-                                            'field' => 'stoky',
-                                        ])
-                                        <h1 class="">Estoque</h1>
-                                        @include('includes.icon-filter', [
-                                            'field' => 'stoky',
-                                        ])
-                                    </div>
 
-                                    <div x-cloak x-show="tooltip === 'stoky'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-gray-50 border border-gray-200 rounded-xl">
-                                        <p>Ordenar pelo o Estoque</p>
-                                    </div>
-                                </div>
-                            </th>
-                            {{-- <th scope="col" class="px-6 py-4 text-center">Categoria</th> --}}
-                            <th scope="col" class="px-6 py-4"></th>
+                            <th scope="col" class="px-6 py-2 text-center">Estoque</th>
+                            {{-- <th scope="col" class="px-6 py-2 rounded-r-xl"></th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
-                            <tr wire:key="{{ $product->id }}" class="font-bold border-b border-neutral-300">
-                                <td class="px-6 py-2 text-center text-neutral-600">#{{ $product->id }}</td>
-                                <td class="px-6 py-2">
-                                    <div class="flex items-center gap-2">
+                            <tr wire:key="{{ $product->id }}"
+                                onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['codigo' => $product->id]) }}'"
+                                class="font-bold transition-all hover:cursor-pointer hover:scale-95">
+                                <td class="">
+                                    <div
+                                        class="px-6 py-4 my-1 text-center text-red-500 border-l border-y rounded-l-xl">
+                                        #{{ $product->id }}
+                                    </div>
+                                </td>
+
+                                {{-- <td class="">
+                                    <div class="px-6 py-3 text-center border-y text-sm">
+                                        {{ \Carbon\Carbon::parse($order->created_date)->translatedFormat('d M, Y') }}
+                                    </div>
+                                </td> --}}
+
+                                <td class="">
+                                    <div class="flex items-center gap-2 px-6 py-2 border-y">
                                         <div class="">
                                             @if ($product->image != null)
                                                 <img src="{{ $product->image }}"
-                                                    class="object-cover object-center rounded-lg h-10 w-10"
+                                                    class="object-cover object-center rounded-lg h-9 w-9"
                                                     alt="Avatar Tailwind CSS Component" />
                                             @else
                                                 <img src="{{ asset('img/Produto-Sem-Imagem.jpg') }}"
-                                                    class="object-cover object-center rounded-lg h-10 w-10"
+                                                    class="object-cover object-center rounded-lg h-9 w-9"
                                                     alt="Avatar Tailwind CSS Component" />
                                             @endif
                                         </div>
                                         <h1 class="font-bold">{{ $product->name }}</h1>
                                     </div>
                                 </td>
-                                <td class="px-6 py-2 text-neutral-600">{{ $product->description }}</td>
-                                <td class="px-6 py-2 text-end text-orange-500">R${{ number_format($product->price, 2, ',', ' ') }}</td>
-                                <td class="px-6 py-2 text-center text-blue-500">{{ $product->stock }}</td>
-                                {{-- <td class="px-6 py-2"></td> --}}
-                                <td class="px-6 py-2">
-                                    <a href="{{ route('admin.produtos.detalhe', ['codigo' => $product->id]) }}">
-                                        <svg class="size-10 rounded-full p-2 hover:bg-gray-200 transition-all hover:scale-95" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg" color="#000000">
-                                            <path
-                                                d="M14.3632 5.65156L15.8431 4.17157C16.6242 3.39052 17.8905 3.39052 18.6716 4.17157L20.0858 5.58579C20.8668 6.36683 20.8668 7.63316 20.0858 8.41421L18.6058 9.8942M14.3632 5.65156L4.74749 15.2672C4.41542 15.5993 4.21079 16.0376 4.16947 16.5054L3.92738 19.2459C3.87261 19.8659 4.39148 20.3848 5.0115 20.33L7.75191 20.0879C8.21972 20.0466 8.65806 19.8419 8.99013 19.5099L18.6058 9.8942M14.3632 5.65156L18.6058 9.8942"
-                                                stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round"></path>
-                                        </svg>
-                                    </a>
+
+                                <td class="">
+                                    <div class="px-6 py-4 text-center border-y">
+                                        {{ $product->description }}
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="px-6 py-4 text-center text-orange-500 border-y">
+                                        R${{ number_format($product->price, 2, ',', ' ') }}
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="px-6 py-4 text-center text-blue-500 border-y border-r rounded-r-xl">
+                                        {{ $product->stock }}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -303,6 +325,12 @@
                 <div class="flex justify-end mt-4">
                     <button wire:click="save()"
                         class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-check-icon lucide-check">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+
                         Salvar
                     </button>
                 </div>
