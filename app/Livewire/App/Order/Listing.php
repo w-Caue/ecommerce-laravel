@@ -8,8 +8,10 @@ use Livewire\Component;
 
 class Listing extends Component
 {
-    public $sortField = 'id';
+    public $sortField = 'orders.id';
     public $sortAsc = true;
+
+    public $search;
 
     public $porPagina = 5;
 
@@ -31,7 +33,13 @@ class Listing extends Component
             'customers.name as customer_name',
             'customers.image as customer_image',
         ])
-            ->leftjoin('customers', 'customers.id', '=', 'orders.customer_id');
+            ->leftjoin('customers', 'customers.id', '=', 'orders.customer_id')
+
+            ->when(!empty($this->search), function ($query) {
+                return $query->where($this->sortField, 'LIKE', '%' . $this->search . '%');
+            })
+
+            ->orderBy($this->sortField, $this->sortAsc ? 'DESC' : 'ASC');
 
         return $orders->paginate(5);
     }
