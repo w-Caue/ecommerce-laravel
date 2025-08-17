@@ -38,8 +38,12 @@ Route::get('/finalizar/{codigo}', Finalizar::class)->name('finalizar');
 
 Route::middleware(['auth:customer'])->prefix('ecommerce')->name('ecommerce.')->group(function () {
     Route::get('/perfil', function () {
-        return view('pages.ecommerce.perfil-cliente');
+        return view('pages.ecommerce.conta-perfil');
     })->name('perfil');
+
+    Route::get('/pedidos', function () {
+        return view('pages.ecommerce.conta-pedidos');
+    })->name('pedidos');
 
     Route::get('logout', function () {
         Auth::logout(false);

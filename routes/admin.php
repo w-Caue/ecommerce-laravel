@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\UtilController;
 use App\Livewire\App\AccountSettings;
 use App\Livewire\App\Customer\Detail as CustomerDetail;
 use App\Livewire\App\Dashboard;
@@ -38,6 +39,8 @@ Route::middleware(['auth:web'])->prefix('admin')->name('admin.')->group(function
         // Route::get('/', OrderListing::class)->name('listagem');
         Route::get('/{codigo}', CustomerDetail::class)->name('detalhe');
     });
+
+    Route::get('/pedido/{codigo}', [UtilController::class, 'print'])->name('impressao');
 
     Route::get('logout', function () {
         Auth::logout(false);

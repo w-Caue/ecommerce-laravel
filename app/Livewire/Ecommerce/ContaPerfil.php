@@ -3,13 +3,11 @@
 namespace App\Livewire\Ecommerce;
 
 use App\Models\Customer;
-use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-class PerfilCliente extends Component
+class ContaPerfil extends Component
 {
     public $client;
 
@@ -36,17 +34,6 @@ class PerfilCliente extends Component
         $this->image = $customer->image;
 
         return $customer;
-    }
-
-    public function orders()
-    {
-        $orders = Order::select([
-            'orders.*'
-        ])
-            ->where('customer_id', $this->client)
-            ->get();
-
-        return $orders;
     }
 
     public function edit()
@@ -85,9 +72,8 @@ class PerfilCliente extends Component
 
     public function render()
     {
-        return view('livewire.ecommerce.perfil-cliente', [
+        return view('livewire.ecommerce.conta-perfil', [
             'customer' => $this->dados(),
-            'orders' => $this->orders(),
         ]);
     }
 }

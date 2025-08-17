@@ -40,7 +40,7 @@
                         </li>
                         <li class="flex">
                             <a class="inline-flex items-center w-full px-2 py-1 text-sm transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                href="{{ route('ecommerce.perfil') }}">
+                                href="{{ route('ecommerce.pedidos') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 mr-3" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
