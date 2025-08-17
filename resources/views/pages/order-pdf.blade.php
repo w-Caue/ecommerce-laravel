@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pedido #1</title>
+    <title>Pedido #{{ $order->id }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,8 +125,8 @@
                     <tr>
                         <td>{{ $item->name }}</td>
                         <td style="text-align: center;">{{ $item->pivot->quantity }}</td>
-                        <td style="text-align: right;">R$ {{ number_format($item->pivot->total, 2, ',', '.') }}</td>
-                        <td style="text-align: right;">R$ {{ number_format($item->pivot->total * $item->pivot->quantity, 2, ',', '.') }}</td>
+                        <td style="text-align: right;">R$ {{ number_format($item->price, 2, ',', '.') }}</td>
+                        <td style="text-align: right;">R$ {{ number_format($item->price * $item->pivot->quantity, 2, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>
