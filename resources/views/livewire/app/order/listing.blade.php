@@ -22,18 +22,20 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <a href="#" class="ms-1 text-md font-bold text-neutral-600">Listagem</a>
+                    <a href="#" class="ms-1 text-md font-bold text-blue-600">Listagem</a>
                 </div>
             </li>
         </ol>
     </nav>
+
+    @livewire('app.order.cards-orders')
 
     <div class="p-4 bg-white rounded-2xl mt-7 border border-neutral-200">
 
         <div class="flex justify-between items-center">
             <div class="relative text-gray-600 w-72">
                 <input
-                    class="w-full bg-gray-100 py-2 px-5 rounded-full border border-neutral-300 text-sm font-bold focus:outline-none"
+                    class="w-full py-2 px-5 rounded-full border border-neutral-300 text-sm font-bold focus:outline-none"
                     wire:model.live="search" type="search" name="search"
                     placeholder="Pesquise por {{ $sortField == 'orders.id' ? 'código' : '' }}{{ $sortField == 'created_date' ? 'data' : '' }}{{ $sortField == 'customers.name' ? 'cliente' : '' }}{{ $sortField == 'payment' ? 'pagamento' : '' }}{{ $sortField == 'status' ? 'status' : '' }}">
                 <button type="submit" class="absolute right-0 top-0 mt-2 mr-4">
@@ -46,7 +48,8 @@
                 </button>
             </div>
 
-            <button class="flex items-center gap-1 text-xs uppercase border border-gray-300 px-3 py-2 rounded-md hover:text-white hover:bg-purple-500 hover:border-purple-500 transition-all hover:scale-95 hover:cursor-pointer">
+            <button
+                class="flex items-center gap-1 text-xs uppercase border border-gray-300 px-3 py-2 rounded-md hover:text-white hover:bg-purple-500 hover:border-purple-500 transition-all hover:scale-95 hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-list-filter-icon lucide-list-filter">

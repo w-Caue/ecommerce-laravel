@@ -9,18 +9,18 @@
         </h1>
 
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
+            {{-- <li class="inline-flex items-center">
                 <a href="{{ route('admin.dashboard') }}"
                     class="inline-flex items-center text-sm font-bold text-neutral-500">
                     Dashboard
                 </a>
-            </li>
+            </li> --}}
             <li class="flex items-center">
-                <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                {{-- <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="m1 9 4-4-4-4" />
-                </svg>
+                </svg> --}}
                 <a href="{{ route('admin.pedidos.listagem') }}"
                     class="inline-flex items-center text-sm font-bold text-neutral-500">
                     Listagem
@@ -33,7 +33,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
                     </svg>
-                    <a href="#" class="ms-1 text-md font-bold text-neutral-600">Detalhe</a>
+                    <a href="#" class="ms-1 text-md font-bold text-blue-600">Detalhe</a>
                 </div>
             </li>
         </ol>
