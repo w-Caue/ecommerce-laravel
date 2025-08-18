@@ -32,7 +32,7 @@
 </head>
 
 <body class="text-gray-700 tracking-widest font-semibold dark:text-gray-400">
-    <div class="flex h-screen" style="background-image: url({{ asset('img/comercio.png') }})">
+    <div x-data="sidebar()" class="flex h-screen" style="background-image: url({{ asset('img/comercio.png') }})">
 
         @include('components.layouts.app.sidebar')
 
@@ -52,6 +52,49 @@
     {{-- <script src=" {{ asset('js/main.js') }}"></script> --}}
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    
+<script>
+    function sidebar() {
+        return {
+            sidebar: {
+                full: false,
+                navOpen: false
+            },
+            tooltip: {
+                show: false,
+                visibleClass: 'block sm:absolute  sm:border border-gray-500 left-16 sm:text-sm sm:bg-gray-800 sm:px-2 sm:py-1 sm:rounded'
+            },
+            dropdown: {
+                open: false,
+                toggle(tap) {
+                    this.open = !this.open;
+                },
+            },
+
+            dropdownProduto: {
+                open: false,
+                toggle(tap) {
+                    this.open = !this.open;
+                },
+            },
+
+            dropdownMovimentacao: {
+                open: false,
+                toggle(tap) {
+                    this.open = !this.open;
+                },
+            },
+
+            dropdownContas: {
+                open: false,
+                toggle(tap) {
+                    this.open = !this.open;
+                },
+            }
+        }
+    }
+</script>
 
 </body>
 

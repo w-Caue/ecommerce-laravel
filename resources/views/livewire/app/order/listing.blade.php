@@ -33,7 +33,7 @@
     <div class="p-4 bg-white rounded-2xl mt-7 border border-neutral-200">
 
         <div class="flex justify-between items-center">
-            <div class="relative text-gray-600 w-72">
+            <div class="relative text-gray-600 sm:w-72">
                 <input
                     class="w-full py-2 px-5 rounded-full border border-neutral-300 text-sm font-bold focus:outline-none"
                     wire:model.live="search" type="search" name="search"
@@ -60,7 +60,7 @@
             </button>
         </div>
 
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4 hidden sm:block">
             <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
                 <table class="min-w-full text-left text-sm text-surface">
                     <thead class="">
@@ -261,6 +261,96 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="flex flex-col gap-6 mt-3">
+            @foreach ($orders as $order)
+                <div wire:key="{{ $order->id }}"
+                    onclick="javascript:location.href='{{ route('admin.pedidos.detalhe', ['codigo' => $order->id]) }}'"
+                    class="bg-white rounded-xl p-2 border border-neutral-200 transition-all hover:cursor-pointer hover:scale-95">
+                    <div class="flex items-start justify-between">
+                        <div class="flex gap-2">
+                            <div class="">
+                                @if ($order->customer_image != null)
+                                    <img src="{{ $order->customer_image }}"
+                                        class="object-cover object-center rounded-xl h-14 w-14"
+                                        alt="Avatar Tailwind CSS Component" />
+                                @else
+                                    <img src="{{ asset('img/ft-cliente.jpeg') }}"
+                                        class="object-cover object-center rounded-xl h-7 w-7"
+                                        alt="Avatar Tailwind CSS Component" />
+                                @endif
+                            </div>
+                            <h1 class="text-xl">Pedido <span class="text-red-500">#{{ $order->id }}</span></h1>
+                        </div>
+
+                        <div class="flex flex-col items-end gap-2">
+                            <span
+                                class="text-xs font-bold px-4 py-1 rounded-xl {{ $order->status == 'pending' ? 'text-blue-500 bg-blue-200' : '' }}
+                                            {{ $order->status == 'paid' ? 'text-yellow-500 bg-yellow-200' : '' }}
+                                            {{ $order->status == 'processing' ? 'text-orange-500 bg-orange-200' : '' }}
+                                            {{ $order->status == 'completed' ? 'text-green-500 bg-green-200' : '' }}
+                                            {{ $order->status == 'cancelled ' ? 'text-red-500 bg-red-200' : '' }}
+                                            {{ $order->status == 'refunded' ? 'text-purple-500 bg-purple-200' : '' }}">
+                                {{ $order->status == 'pending' ? 'Pendente' : '' }}
+                                {{ $order->status == 'paid' ? 'Pago' : '' }}
+                                {{ $order->status == 'processing' ? 'Processando' : '' }}
+                                {{ $order->status == 'completed' ? 'Concluído' : '' }}
+                                {{ $order->status == 'cancelled ' ? 'Cancelado' : '' }}
+                                {{ $order->status == 'refunded	 ' ? 'Reembolso' : '' }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-xs text-neutral-500 mt-3">
+                        <h1>{{ \Carbon\Carbon::parse($order->created_date)->translatedFormat('l, d, M, Y') }}</h1>
+                        <span>{{ \Carbon\Carbon::parse($order->created_date)->translatedFormat('h:i') }}</span>
+                    </div>
+                    <div class="border border-gray-100 my-3"></div>
+
+                    <div class="relative h-40 overflow-y-auto">
+                        <table class="w-full text-sm text-left rtl:text-right">
+                            <thead class="text-xs font-bold text-neutral-400">
+                                <tr>
+                                    <th scope="col" class="p-1">
+                                        Itens
+                                    </th>
+                                    <th scope="col" class="p-1 text-center">
+                                        Qtd
+                                    </th>
+                                    <th scope="col" class="p-1 text-end">
+                                        Preço
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                @foreach ($order->items as $item)
+                                    <tr class="text-xs font-bold text-neutral-600">
+                                        <th scope="row" class="px-1 py-2 ">
+                                            {{ $item->name }}
+                                        </th>
+                                        <td class="px-1 py-2 text-center">
+                                            {{ $item->pivot->quantity }}
+                                        </td>
+
+                                        <td class="px-1 py-2 text-end">
+                                            R${{ number_format($item->pivot->total, 2, ',', ' ') }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="border border-gray-100 my-2"></div>
+
+                    <div class="flex justify-between items-center text-sm font-bold text-neutral-700">
+                        <span>Total</span>
+
+                        <h1 class="text-orange-500">R${{ number_format($order->total, 2, ',', ' ') }}</h1>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
         <div class="flex justify-between gap-2 items-center mx-4 my-2 py-1">

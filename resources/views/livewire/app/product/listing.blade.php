@@ -9,7 +9,7 @@
         </h1>
 
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
+            <li class="sm:inline-flex items-center hidden">
                 <a href="{{ route('admin.dashboard') }}"
                     class="inline-flex items-center text-sm font-bold text-neutral-500">
                     Dashboard
@@ -17,7 +17,7 @@
             </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1 hidden sm:block" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
@@ -31,7 +31,7 @@
     <div class="p-4 bg-white rounded-2xl mt-7 border border-neutral-200">
 
         <div class="flex justify-between items-center">
-            <div class="relative text-gray-600 w-72">
+            <div class="relative text-gray-600 sm:w-72">
                 <input
                     class="w-full py-2 px-5 rounded-full border border-neutral-300 text-sm font-bold focus:outline-none"
                     wire:model.live="search" type="search" name="search"
@@ -60,11 +60,11 @@
                     <line x1="12" x2="12" y1="22" y2="12" />
                 </svg>
 
-                Cadastrar
+                <h1 class="hidden sm:block">Cadastrar</h1>
             </button>
         </div>
 
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4 hidden sm:block">
             <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
                 <table class="min-w-full text-left text-sm text-surface">
                     <thead class="">
@@ -196,6 +196,36 @@
                 </table>
             </div>
         </div>
+
+        <div class="flex flex-col justify-center items-center gap-4 mt-4 sm:hidden">
+            @foreach ($products as $product)
+                <div wire:key="{{ $product->id }}"
+                    onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['codigo' => $product->id]) }}'"
+                    class="flex border border-neutral-200 w-full rounded-xl transition-all hover:cursor-pointer hover:scale-95">
+                    <div class="">
+                        <img src="{{ $product->image }}" class="object-cover object-center rounded-xl size-26"
+                            alt="">
+                    </div>
+
+                    <div class="p-3">
+                        <div class="">
+                            <p class="text-xs font-black text-red-500">#{{ $product->id }}</p>
+                            <h1 class="text-sm font-black text-neutral-600">{{ $product->name }}</h1>
+                            <p class="text-xs font-extrabold text-neutral-500">{{ $product->description }}</p>
+                        </div>
+
+                        <div class="text-sm">
+                            {{-- <h1 class="text-blue-500 font-bold">{{ $product->stock }}</h1> --}}
+
+                            <h1 class="text-orange-500 font-bold">R${{ number_format($product->price, 2, ',', ' ') }}
+                            </h1>
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+
 
         <div class="flex justify-between gap-2 items-center mx-4 my-2 py-1">
             @include('includes.porPagina')

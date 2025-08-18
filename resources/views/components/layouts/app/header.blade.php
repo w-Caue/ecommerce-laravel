@@ -1,16 +1,16 @@
 <header class="py-2 border-b-2 mx-5 mt-7 border-gray-200 dark:border-gray-700">
     <div class="flex items-center justify-between">
         <div class="flex my-1 space-x-3">
-            <button x-on:click="sidebar = !sidebar" class="block lg:hidden focus:outline-none dark:text-white">
+            <button x-on:click="sidebar.full = !sidebar.full" class="block lg:hidden focus:outline-none dark:text-white">
                 <!-- Menu Icon -->
-                <svg class="w-6 h-6" x-bind:class="sidebar ? 'hidden' : ''" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-6 h-6" x-bind:class="sidebar.full ? 'hidden' : ''" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path>
                 </svg>
 
                 <!-- Close Icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6" x-bind:class="sidebar ? '' : 'hidden'">
+                    stroke="currentColor" class="w-6 h-6" x-bind:class="sidebar.full ? '' : 'hidden'">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
 
@@ -18,14 +18,14 @@
 
             <div>
                 <h1
-                    class="font-black text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
+                    class="font-black text-xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
                     Elolja Admin
                 </h1>
             </div>
         </div>
 
         <ul class="flex justify-center items-center flex-shrink-0 space-x-3">
-            <li class="flex">
+            <li class="hidden sm:flex">
                 <div class="relative mx-auto text-gray-600">
                     <input
                         class="w-full bg-gray-200 border border-neutral-300 py-2 px-5 pr-16 rounded-full text-sm font-bold focus:outline-none"

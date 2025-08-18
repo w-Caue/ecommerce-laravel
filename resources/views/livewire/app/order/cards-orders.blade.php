@@ -1,6 +1,6 @@
 <div class="">
     <!-- Cards -->
-    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4" wfd-id="87">
+    <div class="sm:grid gap-3 mt-5 mb-8 md:grid-cols-2 xl:grid-cols-4 hidden" wfd-id="87">
 
         <!-- Card -->
         <div title="Pedidos pendentes de pagamento" class="text-blue-500">

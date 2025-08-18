@@ -2,7 +2,7 @@
 
 @props(['title', 'subtitle', 'color', 'url'])
 
-<div {{ $attributes->merge(['class' => 'flex items-center p-4 bg-white rounded-2xl mt-7 border border-neutral-200 cursor-pointer transition-all hover:scale-95']) }}>
+<div {{ $attributes->merge(['class' => 'flex items-center p-4 bg-white rounded-2xl border border-neutral-200 cursor-pointer transition-all hover:scale-95']) }}>
     
     {{ $slot }}
     <div>
