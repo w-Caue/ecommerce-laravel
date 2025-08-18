@@ -18,6 +18,8 @@ class Listing extends Component
 
     public $porPagina = 5;
 
+    public $search;
+
     public $name;
 
     public $description;
@@ -43,6 +45,10 @@ class Listing extends Component
         $produtos = Product::select([
             'products.*'
         ])
+            ->when(!empty($this->search), function ($query) {
+                return $query->where($this->sortField, 'LIKE', '%' . $this->search . '%');
+            })
+
             ->orderBy($this->sortField, $this->sortAsc ? 'DESC' : 'ASC')
 
             ->paginate($this->porPagina);

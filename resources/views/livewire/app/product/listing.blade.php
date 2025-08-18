@@ -31,9 +31,11 @@
     <div class="p-4 bg-white rounded-2xl mt-7 border border-neutral-200">
 
         <div class="flex justify-between items-center">
-            <div class="relative text-gray-600">
-                <input class="w-full bg-gray-100 py-2 px-5 pr-16 rounded-full text-sm font-bold focus:outline-none"
-                    type="search" name="search" placeholder="Pesquisar Aqui">
+            <div class="relative text-gray-600 w-72">
+                <input
+                    class="w-full py-2 px-5 rounded-full border border-neutral-300 text-sm font-bold focus:outline-none"
+                    wire:model.live="search" type="search" name="search"
+                    placeholder="Pesquise por {{ $sortField == 'id' ? 'código' : '' }}{{ $sortField == 'name' ? 'nome' : '' }}{{ $sortField == 'description' ? 'descrição' : '' }}">
                 <button type="submit" class="absolute right-0 top-0 mt-2 mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-gray-700" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -70,14 +72,14 @@
                             <th scope="col" class="py-2 rounded-l-xl">
                                 <div class="flex justify-center">
                                     <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
-                                        wire:click="sortBy('orders.id')" x-on:mouseover="tooltip = 'id'"
+                                        wire:click="sortBy('id')" x-on:mouseover="tooltip = 'id'"
                                         x-on:mouseleave="tooltip = 'nenhum'">
                                         @include('includes.icon-search', [
-                                            'field' => 'orders.id',
+                                            'field' => 'id',
                                         ])
                                         <h1 class="">Código</h1>
                                         @include('includes.icon-filter', [
-                                            'field' => 'orders.id',
+                                            'field' => 'id',
                                         ])
                                     </div>
 
@@ -87,27 +89,6 @@
                                     </div>
                                 </div>
                             </th>
-
-                            {{-- <th scope="col" class="px-6 py-2">
-                                <div class="flex justify-center">
-                                    <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
-                                        wire:click="sortBy('created_date')" x-on:mouseover="tooltip = 'date'"
-                                        x-on:mouseleave="tooltip = 'nenhum'">
-                                        @include('includes.icon-search', [
-                                            'field' => 'created_date',
-                                        ])
-                                        <h1 class="">Dt. Criação</h1>
-                                        @include('includes.icon-filter', [
-                                            'field' => 'created_date',
-                                        ])
-                                    </div>
-
-                                    <div x-cloak x-show="tooltip === 'date'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
-                                        <p>Ordenar pelo a Data</p>
-                                    </div>
-                                </div>
-                            </th> --}}
 
                             <th scope="col" class="px-6 py-2">
                                 <div class="flex justify-center">
@@ -154,27 +135,13 @@
 
                             <th scope="col" class="px-6 py-2">
                                 <div class="flex justify-center">
-                                    <div class="flex justify-center gap-1 items-center hover:cursor-pointer"
-                                        wire:click="sortBy('price')" x-on:mouseover="tooltip = 'price'"
-                                        x-on:mouseleave="tooltip = 'nenhum'">
-                                        @include('includes.icon-search', [
-                                            'field' => 'price',
-                                        ])
+                                    <div class="flex justify-center gap-1 items-center hover:cursor-pointer">
                                         <h1 class="">Preço</h1>
-                                        @include('includes.icon-filter', [
-                                            'field' => 'price',
-                                        ])
-                                    </div>
-
-                                    <div x-cloak x-show="tooltip === 'price'" x-transition x-transition.duration.300ms
-                                        class="absolute z-10 p-2 mt-6 text-xs text-blue-500 font-bold bg-white border border-gray-300 rounded-xl">
-                                        <p>Ordenar pelo o Preço</p>
                                     </div>
                                 </div>
                             </th>
 
                             <th scope="col" class="px-6 py-2 text-center">Estoque</th>
-                            {{-- <th scope="col" class="px-6 py-2 rounded-r-xl"></th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -188,12 +155,6 @@
                                         #{{ $product->id }}
                                     </div>
                                 </td>
-
-                                {{-- <td class="">
-                                    <div class="px-6 py-3 text-center border-y text-sm">
-                                        {{ \Carbon\Carbon::parse($order->created_date)->translatedFormat('d M, Y') }}
-                                    </div>
-                                </td> --}}
 
                                 <td class="">
                                     <div class="flex items-center gap-2 px-6 py-2 border-y">
