@@ -5,11 +5,11 @@
 
     <nav class="flex items-center justify-between" aria-label="Breadcrumb">
         <h1 class="text-3xl text-neutral-600">
-            Configurações de Conta
+            Contas
         </h1>
 
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
+            <li class="sm:inline-flex items-center hidden">
                 <a href="{{ route('admin.dashboard') }}"
                     class="inline-flex items-center text-sm font-bold text-neutral-500">
                     Dashboard
@@ -17,7 +17,7 @@
             </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1 hidden sm:block" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
@@ -28,7 +28,7 @@
         </ol>
     </nav>
 
-    <div class="grid grid-cols-3 gap-4 mt-7">
+    <div class="grid sm:grid-cols-3 gap-4 mt-7">
         <div class="p-3">
             <div class="flex flex-col gap-4">
 
@@ -74,9 +74,9 @@
             </div>
         </div>
 
-        <div class="col-span-2 bg-white rounded-xl p-5 border border-neutral-200">
-            <div class="flex items-center gap-4 " x-data="imageViewer()">
-                <div class="w-44 relative">
+        <div class="sm:col-span-2 bg-white rounded-xl p-5 border border-neutral-200">
+            <div class="flex sm:flex-row flex-col items-center gap-4 " x-data="imageViewer()">
+                <div class="w-32 sm:w-44 relative">
                     <form enctype="multipart/form-data">
                         <div class="shrink-0">
                             <div x-show="imageUrl">
@@ -126,14 +126,14 @@
 
             <h1 class="text-xl text-neutral-600 mt-5">Alterar a senha</h1>
 
-            <div class="flex items-center gap-4 ">
+            <div class="flex sm:flex-row flex-col items-center gap-4 ">
 
-                <div class="w-56">
+                <div class="w-full sm:w-56">
                     <x-form.label value="Senha atual" />
                     <x-form.input type="password" wire:model="password" placeholder="********" />
                 </div>
 
-                <div class="w-56">
+                <div class="w-full sm:w-56">
                     <x-form.label value="Nova senha" />
                     <x-form.input type="password" wire:model="newpassword" placeholder="********" />
                 </div>
@@ -142,6 +142,12 @@
             <div class="flex justify-end">
                 <button wire:click="edit()"
                     class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 mt-5 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-check-icon lucide-check">
+                        <path d="M20 6 9 17l-5-5" />
+                    </svg>
+
                     Salvar
                 </button>
             </div>
@@ -221,6 +227,12 @@
                 <div class="flex justify-end mt-5">
                     <button wire:click="save()"
                         class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-check-icon lucide-check">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+
                         Salvar
                     </button>
                 </div>

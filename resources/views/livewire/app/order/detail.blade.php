@@ -15,7 +15,7 @@
                     Dashboard
                 </a>
             </li> --}}
-            <li class="flex items-center">
+            <li class="hidden sm:flex items-center">
                 {{-- <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -28,7 +28,7 @@
             </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1 hidden sm:block" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
@@ -39,10 +39,10 @@
         </ol>
     </nav>
 
-    <div class="grid grid-cols-3 gap-4 mt-4">
-        <div class="col-span-2">
+    <div class="grid sm:grid-cols-3 gap-4 mt-4">
+        <div class="sm:col-span-2">
             <div class="bg-white rounded-xl p-3 border border-neutral-200">
-                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-4 hidden sm:block">
                     <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
                         <table class="min-w-full text-left text-sm text-surface">
                             <thead class="border-b border-neutral-300 ">
@@ -138,11 +138,44 @@
                         </table>
                     </div>
                 </div>
+
+                <h1 class="text-lg text-neutral-400 font-bold sm:hidden">Itens</h1>
+
+                <div class="flex flex-col gap-3 sm:hidden">
+                    @foreach ($items as $item)
+                        <div wire:key="{{ $item->id }}" class="flex gap-2 w-full border-b border-gray-300 p-2">
+                            <div class="">
+                                @if ($item->image != null)
+                                    <img src="{{ $item->image }}"
+                                        class="object-cover object-center rounded-md h-20 w-20"
+                                        alt="Avatar Tailwind CSS Component" />
+                                @else
+                                    <img src="{{ asset('img/ft-cliente.jpeg') }}"
+                                        class="object-cover object-center rounded-full h-20 w-20"
+                                        alt="Avatar Tailwind CSS Component" />
+                                @endif
+                            </div>
+
+                            <div class="flex flex-col justify-between w-full p-3">
+                                <h1 class="font-bold text-lg">{{ $item->name }}</h1>
+
+                                <div class="flex justify-between items-center font-extrabold">
+                                    <h1 class="text-orange-500">
+                                        R${{ number_format($item->product_price, 2, ',', ' ') }}</h1>
+                                    <p>{{ $item->quantity }}</p>
+                                    <h1 class="text-orange-500">R${{ number_format($item->total, 2, ',', ' ') }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 
         <div class="space-y-4">
             <div class="bg-white rounded-xl p-3 border border-neutral-200 transition-all hover:scale-95">
+                <h1 class="text-lg text-neutral-400 font-bold sm:hidden">Cliente</h1>
+
                 <a href="{{ route('admin.cliente.detalhe', ['codigo' => $order->customer_id]) }}"
                     class="flex items-start gap-2">
                     <div class="">
@@ -194,7 +227,7 @@
                 </div>
 
             </div>
-
+            
             <div class="bg-white rounded-xl p-3 border border-neutral-200">
                 <div class="flex items-center justify-between  font-bold">
                     <h1 class="text-neutral-700">Total:</h1>

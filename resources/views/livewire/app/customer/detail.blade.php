@@ -28,32 +28,32 @@
         </ol>
     </nav>
 
-    <div class="grid grid-cols-3 gap-4 mt-4">
+    <div class="grid sm:grid-cols-4 gap-4 mt-4">
         <div>
             <div class="bg-white rounded-xl p-3 border border-neutral-200">
-                <div class="flex items-start gap-2">
+                <div class="flex flex-col justify-center items-center gap-2 ">
                     <div class="">
-                        <img src="{{ $customer->image }}" class="object-cover object-center rounded-xl h-22 w-22"
+                        <img src="{{ $customer->image }}" class="object-cover object-center rounded-full h-22 w-22"
                             alt="Avatar Tailwind CSS Component" />
                     </div>
-                    <div>
+                    <div class="flex flex-col items-center">
                         <h1 class="text-lg font-bold">{{ $customer->name }}</h1>
                         <div class="text-sm font-bold text-neutral-500">
                             <input type="text" value="{{ $customer->phone }}"
                                 x-mask:dynamic="$input.startsWith('34') || $input.startsWith('37') ? '(99) 9 9999-9999' : '(99) 9 9999-9999'"
                                 disabled></input>
-                            <p>{{ $customer->email }}</p>
+                            <p class="text-neutral-600">{{ $customer->email }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-span-2">
+        <div class="sm:col-span-3">
             <h1 class="text-2xl text-neutral-700">
                 Pedidos desse cliente
             </h1>
-            <div class="grid grid-cols-2 gap-6 mt-3">
+            <div class="grid sm:grid-cols-2 gap-6 mt-3">
                 @foreach ($orders as $order)
                     <div class="bg-white rounded-xl p-4 border border-neutral-200">
                         <div class="flex items-start justify-between">
@@ -61,18 +61,20 @@
                             <h1 class="text-xl">Pedido <span class="text-red-500">#{{ $order->id }}</span></h1>
 
                             <div class="flex flex-col items-end gap-2">
-                                <button
-                                    class="flex items-center gap-1 text-xs font-bold text-neutral-700 bg-gray-200 rounded-md p-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-timer-icon lucide-timer">
-                                        <line x1="10" x2="14" y1="2" y2="2" />
-                                        <line x1="12" x2="15" y1="14" y2="11" />
-                                        <circle cx="12" cy="14" r="8" />
-                                    </svg>
-
-                                    {{ $order->status }}
-                                </button>
+                                <span
+                                    class="text-xs font-bold px-4 py-1 rounded-xl {{ $order->status == 'pending' ? 'text-blue-500 bg-blue-200' : '' }}
+                                            {{ $order->status == 'paid' ? 'text-yellow-500 bg-yellow-200' : '' }}
+                                            {{ $order->status == 'processing' ? 'text-orange-500 bg-orange-200' : '' }}
+                                            {{ $order->status == 'completed' ? 'text-green-500 bg-green-200' : '' }}
+                                            {{ $order->status == 'cancelled ' ? 'text-red-500 bg-red-200' : '' }}
+                                            {{ $order->status == 'refunded' ? 'text-purple-500 bg-purple-200' : '' }}">
+                                    {{ $order->status == 'pending' ? 'Pendente' : '' }}
+                                    {{ $order->status == 'paid' ? 'Pago' : '' }}
+                                    {{ $order->status == 'processing' ? 'Processando' : '' }}
+                                    {{ $order->status == 'completed' ? 'Concluído' : '' }}
+                                    {{ $order->status == 'cancelled ' ? 'Cancelado' : '' }}
+                                    {{ $order->status == 'refunded	 ' ? 'Reembolso' : '' }}
+                                </span>
                             </div>
                         </div>
 

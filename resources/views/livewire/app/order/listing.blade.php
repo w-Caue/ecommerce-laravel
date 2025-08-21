@@ -9,7 +9,7 @@
         </h1>
 
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
+            <li class="sm:inline-flex items-center hidden">
                 <a href="{{ route('admin.dashboard') }}"
                     class="inline-flex items-center text-sm font-bold text-neutral-500">
                     Dashboard
@@ -17,7 +17,7 @@
             </li>
             <li>
                 <div class="flex items-center">
-                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
+                    <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1 hidden sm:block" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 9 4-4-4-4" />
@@ -225,7 +225,7 @@
                                             {{ $order->status == 'completed' ? 'text-green-500 bg-green-200' : '' }}
                                             {{ $order->status == 'cancelled ' ? 'text-red-500 bg-red-200' : '' }}
                                             {{ $order->status == 'refunded' ? 'text-purple-500 bg-purple-200' : '' }}">
-                                            {{ $order->status == 'pending' ? 'Esp. Pagamento' : '' }}
+                                            {{ $order->status == 'pending' ? 'Pendente' : '' }}
                                             {{ $order->status == 'paid' ? 'Pago' : '' }}
                                             {{ $order->status == 'processing' ? 'Processando' : '' }}
                                             {{ $order->status == 'completed' ? 'Concluído' : '' }}
@@ -247,7 +247,7 @@
                                             <svg class="size-5"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejo in="round"
                                                 class="lucide lucide-search-icon lucide-search">
                                                 <path d="m21 21-4.34-4.34" />
                                                 <circle cx="11" cy="11" r="8" />
@@ -263,7 +263,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-6 mt-3">
+        <div class="flex flex-col gap-6 mt-3 sm:hidden">
             @foreach ($orders as $order)
                 <div wire:key="{{ $order->id }}"
                     onclick="javascript:location.href='{{ route('admin.pedidos.detalhe', ['codigo' => $order->id]) }}'"
@@ -308,7 +308,7 @@
                     </div>
                     <div class="border border-gray-100 my-3"></div>
 
-                    <div class="relative h-40 overflow-y-auto">
+                    <div class="relative h-32 overflow-y-auto">
                         <table class="w-full text-sm text-left rtl:text-right">
                             <thead class="text-xs font-bold text-neutral-400">
                                 <tr>

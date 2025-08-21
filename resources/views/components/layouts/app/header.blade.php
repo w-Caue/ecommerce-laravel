@@ -25,7 +25,7 @@
         </div>
 
         <ul class="flex justify-center items-center flex-shrink-0 space-x-3">
-            <li class="hidden sm:flex">
+            {{-- <li class="hidden sm:flex">
                 <div class="relative mx-auto text-gray-600">
                     <input
                         class="w-full bg-gray-200 border border-neutral-300 py-2 px-5 pr-16 rounded-full text-sm font-bold focus:outline-none"
@@ -39,13 +39,13 @@
                         </svg>
                     </button>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="flex">
                 <button
                     class="bg-gray-200 border border-neutral-300 rounded-full transition-all hover:text-blue-500 hover:scale-95 hover:cursor-pointer"
                     aria-label="Toggle color mode">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 m-2" viewBox="0 0 24 24" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 m-2" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-bell-ring-icon lucide-bell-ring">
                         <path d="M10.268 21a2 2 0 0 0 3.464 0" />
@@ -61,7 +61,7 @@
                 <button x-on:click="$dispatch('open-modal-small', { name : 'logout' })"
                     class="bg-gray-200 border border-neutral-300 rounded-full transition-all hover:text-red-500 hover:scale-95 hover:cursor-pointer"
                     aria-label="Toggle color mode">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6 m-2" viewBox="0 0 24 24" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 m-2" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-log-out-icon lucide-log-out">
                         <path d="m16 17 5-5-5-5" />
