@@ -24,6 +24,10 @@ class Pessoa extends Component
     #[Validate('required', message: 'O campo senha estar em branco.')]
     public $password;
 
+    public $emailLogin;
+
+    public $passwordLogin;
+
     public function mount()
     {
         if (Auth::check()) {
@@ -33,16 +37,22 @@ class Pessoa extends Component
 
     public function login()
     {
-        $client = Customer::where('email', $this->email)->first();
+        $client = Customer::where('email', $this->emailLogin)->first();
 
         if (!$client) {
-            return;
+            return LivewireAlert::title('Usuário não encontrado!')
+                // ->toast()
+                ->error()
+                ->show();
         }
 
-        $pass = Hash::check($this->password, $client->password);
+        $pass = Hash::check($this->passwordLogin, $client->password);
 
         if (!$pass) {
-            return;
+            return LivewireAlert::title('Senha incorreta!')
+                // ->toast()
+                ->error()
+                ->show();
         }
 
         Auth::guard('customer')->login($client, false);

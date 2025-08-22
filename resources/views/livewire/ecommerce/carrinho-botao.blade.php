@@ -18,23 +18,24 @@
     </div>
 
     <div class="hidden sm:block">
-        <button x-cloak x-on:click="openCarrinho = !openCarrinho"
-            class="relative inline-flex items-center p-2 m-1 font-semibold text-blue-500 align-middle duration-300 rounded-full transition-all cursor-pointer text-md hover:bg-gray-200 hover:scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
-                <circle cx="8" cy="21" r="1" />
-                <circle cx="19" cy="21" r="1" />
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-            </svg>
+        <div class="relative">
+            <button x-cloak x-on:click="openCarrinho = !openCarrinho"
+                class="p-3 text-blue-500 duration-300 rounded-full transition-all cursor-pointer hover:bg-gray-200 hover:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
+                    <circle cx="8" cy="21" r="1" />
+                    <circle cx="19" cy="21" r="1" />
+                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                </svg>
+            </button>
 
-            {{-- @if ($totalItens != 0) --}}
-            <span aria-hidden="true" title="Adicionar ao carrinho"
-                class="absolute top-0 right-0 inline-block size-5 text-center text-xs text-white transform translate-x-1 -translate-y-1 bg-blue-500 border-2 border-white rounded-full">
-                {{ $totalItens }}
-            </span>
-            {{-- @endif --}}
-        </button>
+            @if ($totalItens != 0)
+                <div class="absolute top-0 right-0 px-1 bg-blue-500 rounded-full">
+                    <h1 class="text-sm text-center text-white">{{ $totalItens }}</h1>
+                </div>
+            @endif
+        </div>
 
         <div x-cloak x-show="openCarrinho" @click.outside="openCarrinho=false" @keydown.escape="openCarrinho=false"
             class="absolute my-4 right-10 z-20 px-3 w-96 bg-white border rounded-xl">

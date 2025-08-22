@@ -4,26 +4,41 @@
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <form wire:submit="save" class="flex flex-col gap-3">
+    <form wire:submit="save" class="flex flex-col gap-4">
         <!-- Name -->
-        <flux:input wire:model="name" :label="__('Nome')" type="text" required autofocus autocomplete="name"
-            :placeholder="__('Seu nome')" />
+        <div>
+            <x-form.label value="Nome" />
+            <flux:input wire:model="name" type="text" required autofocus autocomplete="name"
+                :placeholder="__('Insira seu nome aqui')" />
+        </div>
 
         <!-- Email Address -->
-        <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email"
-            placeholder="email@exemplo.com" />
+        <div>
+            <x-form.label value="Email" />
+            <flux:input wire:model="email" type="email" required autocomplete="email"
+                placeholder="email@exemplo.com" />
+        </div>
 
         <!-- Phone -->
-        <flux:input wire:model="phone" :label="__('Telefone')" type="tel" required autocomplete="tel"
-            placeholder="(00) 1 2345 6789"  x-mask:dynamic="$input.startsWith('34') || $input.startsWith('37') ? '(99) 9 9999-9999' : '(99) 9 9999-9999'"/>
+        <div>
+            <x-form.label value="Telefone" />
+            <flux:input wire:model="phone" type="tel" required autocomplete="tel" placeholder="(00) 1 2345 6789"
+                x-mask:dynamic="$input.startsWith('34') || $input.startsWith('37') ? '(99) 9 9999-9999' : '(99) 9 9999-9999'" />
+        </div>
 
-        <!-- Password -->
-        <flux:input wire:model="password" :label="__('Senha')" type="password" required autocomplete="new-password"
+          <!-- Password -->
+        <div>
+            <x-form.label value="Senha" />
+            <flux:input wire:model="password" type="password" required autocomplete="new-password"
             :placeholder="__('Senha')" viewable />
-
+        </div>
+      
         <!-- Confirm Password -->
-        <flux:input wire:model="password_confirmation" :label="__('Confirmar senha')" type="password" required
+        <div>
+            <x-form.label value="Confirmar senha" />
+            <flux:input wire:model="password_confirmation" type="password" required
             autocomplete="new-password" :placeholder="__('Confirmar senha')" viewable />
+        </div>
 
         <div class="flex items-center justify-end">
             <button

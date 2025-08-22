@@ -1,6 +1,6 @@
 <div class=" w-full">
     <div class="pt-2 relative mx-auto text-gray-600">
-        <input class="w-full border border-gray-400 bg-white h-10 px-5 pr-16 rounded-full text-sm font-bold focus:outline-none"
+        <input class="w-full border border-gray-200 bg-white h-10 px-5 pr-16 rounded-xl text-sm font-bold focus:outline-none"
             type="search" name="search" placeholder="Pesquisar Aqui">
         <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-blue-500" viewBox="0 0 24 24" fill="none"

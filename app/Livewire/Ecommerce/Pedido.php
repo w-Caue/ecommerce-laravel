@@ -68,7 +68,7 @@ class Pedido extends Component
             ]);
         }
 
-        return redirect()->route('finalizar', ['codigo' => $order->id]);
+        return redirect()->route('ecommerce.pedidos');
     }
 
     public function render()
