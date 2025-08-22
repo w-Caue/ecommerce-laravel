@@ -16,6 +16,9 @@
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Splide CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
     <style>
         * {
             font-family: "Nunito", sans-serif;
@@ -55,17 +58,20 @@
 
     </header>
 
-    <main class="mx-25 mt-3">
-        <section class="bg-white rounded-xl">
-            <p class="text-center text-gray-600">Produtos em Promoção</p>
-
-            @livewire('ecommerce.produtos')
+    <main class="mx-25 my-26">
+        <section class="bg-white rounded-2xl">
+            <div class="p-3">
+                @livewire('ecommerce.produtos')
+            </div>
         </section>
 
     </main>
 
     @livewireScripts
 </body>
+
+<!-- Splide JS -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 <script>
     function data() {

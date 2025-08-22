@@ -3,8 +3,10 @@
 namespace App\Livewire\Auth\Custorme;
 
 use App\Models\Customer;
+use App\Models\CustomerImage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -17,23 +19,33 @@ class Register extends Component
 
     public function save()
     {
-        $client = Customer::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'password' => Hash::make($this->password),
-        ]);
+        $usuario = Customer::where('email', $this->email)->first();
 
-        if ($client->save()) {
-            Auth::guard('customer')->login($client, false);
+        $count = CustomerImage::count();
 
-            // $this->alert('success', 'Conta cadastrada!', [
-            //     'position' => 'center',
-            //     'timer' => 3000,
-            //     'toast' => false,
-            // ]);
+        $id = random_int(1, $count);
 
-            return redirect()->route('home');
+        $image = CustomerImage::where('id', $id)->first();
+
+        if ($usuario == null) {
+            $user = Customer::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'image' => $image->image,
+                'password' => Hash::make($this->password),
+            ]);
+
+            if ($user) {
+                Auth::guard('customer')->login($user, false);
+
+                return redirect()->route('home');
+            }
+        } else {
+            return LivewireAlert::title('Email já esta sendo utilizado!')
+                // ->toast()
+                ->error()
+                ->show();
         }
     }
     #[Layout('components.layouts.auth')]

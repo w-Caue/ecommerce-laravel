@@ -10,7 +10,16 @@ class Produtos extends Component
 {
     use WithPagination;
 
-    public function dados()
+    public function promocoes()
+    {
+        $products = Product::select([
+            'products.*'
+        ])->paginate();
+
+        return $products;
+    }
+
+    public function destaques()
     {
         $products = Product::select([
             'products.*'
@@ -22,7 +31,8 @@ class Produtos extends Component
     public function render()
     {
         return view('livewire.ecommerce.produtos', [
-            'products' => $this->dados()
+            'products' => $this->promocoes(),
+            'destaques' => $this->destaques(),
         ]);
     }
 }

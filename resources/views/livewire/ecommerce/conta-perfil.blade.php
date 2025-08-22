@@ -9,97 +9,169 @@
 
     <div class="grid grid-cols-4 items-start">
         <div>
+            <div class="flex justify-between">
 
-        </div>
-        <div class=" bg-white rounded-xl p-5 border border-neutral-200">
-            <div class="flex flex-col justify-center items-center gap-4 ">
-                <div class="w-44">
-                    <div class="shrink-0">
-                        <label class="">
-                            <img id='preview_img' accept="image/png, image/jpeg" x-on:change="fileChosen"
-                                class="w-full object-cover rounded-full transition-all hover:scale-95"
-                                src="{{ auth()->guard('customer')->user()->image }}" alt="Current profile photo" />
+                <div class="space-y-2 mx-4 p-2 rounded-xl transition-all duration-300 bg-white w-full">
 
-                            <input type='file' class="hidden" wire:model="img" x-on:change="fileChosen" />
-                        </label>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('admin.contas') }}"
+                            class="flex justify-center items-center gap-2 rounded-xl hover:bg-gray-100 hover:cursor-pointer">
+
+                            <img src="{{ auth()->guard('customer')->user()->image ?? '' }}"
+                                class="object-cover object-center rounded-full size-14 border border-gray-100"
+                                alt="ft-perfil">
+
+                            <h1 class="font-black text-neutral-600">
+                                {{ auth()->guard('customer')->user()->name ?? '' }}
+                            </h1>
+                        </a>
+                    </div>
+
+                    <div class="relative space-y-4 text-xs uppercase font-bold">
+
+                        {{-- <div class="border border-gray-200"></div> --}}
+
+                        {{-- HOME --}}
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="relative flex justify-between items-center space-x-2 p-2 cursor-pointer hover:bg-gray-100 {{ request()->routeIs('admin.dashboard') ? 'text-blue-500 rounded-r-xl border-l-2 border-blue-500 ' : 'text-neutral-500 rounded-xl hover:text-blue-500' }}">
+                            <div class="flex items-center space-x-2">
+                                <x-icons.dashboard />
+
+                                <h1>
+                                    Inicio
+                                </h1>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('admin.produtos.listagem') }}"
+                            class="relative flex justify-between items-center space-x-2 p-2 cursor-pointer hover:bg-gray-100 {{ request()->routeIs('admin.produtos.*') ? 'text-blue-500 rounded-r-xl border-l-2 border-blue-500 ' : 'text-neutral-500 rounded-xl hover:text-blue-500' }}">
+                            <div class="flex items-center space-x-2">
+                                <x-icons.package />
+
+                                <h1>
+                                    Produtos
+                                </h1>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('admin.pedidos.listagem') }}"
+                            class="relative flex justify-between items-center space-x-2 p-2 cursor-pointer hover:bg-gray-100 {{ request()->routeIs('admin.pedidos.*') ? 'text-blue-500 rounded-r-xl border-l-2 border-blue-500 ' : 'text-neutral-500 rounded-xl hover:text-blue-500' }}"
+                            x-bind:class="{
+                                'justify-start': sidebar.full,
+                                'sm:justify-center': !sidebar.full,
+                            }">
+                            <div class="flex items-center space-x-2">
+                                <x-icons.orders />
+
+                                <h1>
+                                    Pedidos
+                                </h1>
+                            </div>
+                        </a>
+
                     </div>
                 </div>
-
-                <label class="w-full" for="">
-                    <x-form.label value="Nome*" />
-
-                    <x-form.input wire:model="name" id="name" type="text"
-                        class="@error('name') is-invalid @enderror" name="name" value="{{ $customer->name }}"
-                        placeholder="Insira seu nome"></x-form.input>
-
-                    @error('name')
-                        <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </label>
-
-                <label class="w-full" for="">
-                    <x-form.label value="Email*" />
-
-                    <x-form.input wire:model="email" id="email" type="email"
-                        class="@error('email') is-invalid @enderror" name="email" value="{{ $customer->email }}"
-                        placeholder="Insira seu email"></x-form.input>
-
-                    @error('email')
-                        <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </label>
-
-                <label class="w-full" for="">
-                    <x-form.label value="Telefone*" />
-
-                    <x-form.input wire:model="phone" id="phone" type="tel"
-                        class="@error('phone') is-invalid @enderror" name="phone" value="{{ $customer->phone }}"
-                        placeholder="Insira seu número"
-                        x-mask:dynamic="$input.startsWith('34') || $input.startsWith('37') ? '(99) 9 9999-9999' : '(99) 9 9999-9999'"></x-form.input>
-
-                    @error('phone')
-                        <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </label>
-            </div>
-
-            <div class="flex justify-end">
-                <button wire:click="edit()"
-                    class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 mt-5 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
-                    Salvar
-                </button>
             </div>
         </div>
+        <div class="col-span-3">
+            <div class=" bg-white rounded-xl p-5 border border-neutral-200">
+                <div class="flex justify-center items-center gap-4 ">
+                    <div class="w-56">
+                        <div class="shrink-0">
+                            <label class="">
+                                <img id='preview_img' accept="image/png, image/jpeg" x-on:change="fileChosen"
+                                    class="w-full object-cover rounded-full transition-all hover:scale-95"
+                                    src="{{ auth()->guard('customer')->user()->image }}" alt="Current profile photo" />
 
-        <div class=" bg-white rounded-xl p-5 border border-neutral-200">
-            <h1 class="text-xl text-neutral-600 mt-5">Alterar a senha</h1>
+                                <input type='file' class="hidden" wire:model="img" x-on:change="fileChosen" />
+                            </label>
+                        </div>
+                    </div>
 
-            <div class="flex items-center gap-4 ">
+                    <label class="w-full" for="">
+                        <x-form.label value="Nome*" />
 
-                <div class="w-56">
-                    <x-form.label value="Senha atual" />
-                    <x-form.input type="password" wire:model="password" placeholder="********" />
+                        <x-form.input wire:model="name" id="name" type="text"
+                            class="@error('name') is-invalid @enderror" name="name" value="{{ $customer->name }}"
+                            placeholder="Insira seu nome"></x-form.input>
+
+                        @error('name')
+                            <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
+
+                    <label class="w-full" for="">
+                        <x-form.label value="Email*" />
+
+                        <x-form.input wire:model="email" id="email" type="email"
+                            class="@error('email') is-invalid @enderror" name="email" value="{{ $customer->email }}"
+                            placeholder="Insira seu email"></x-form.input>
+
+                        @error('email')
+                            <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
+
+                    <label class="w-full" for="">
+                        <x-form.label value="Telefone*" />
+
+                        <x-form.input wire:model="phone" id="phone" type="tel"
+                            class="@error('phone') is-invalid @enderror" name="phone" value="{{ $customer->phone }}"
+                            placeholder="Insira seu número"
+                            x-mask:dynamic="$input.startsWith('34') || $input.startsWith('37') ? '(99) 9 9999-9999' : '(99) 9 9999-9999'"></x-form.input>
+
+                        @error('phone')
+                            <span class="text-sm font-normal tracking-widest text-red-500" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </label>
                 </div>
 
-                <div class="w-56">
-                    <x-form.label value="Nova senha" />
-                    <x-form.input type="password" wire:model="newpassword" placeholder="********" />
+                <div class="flex justify-end">
+                    <button wire:click="edit()"
+                        class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 mt-5 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                        Salvar
+                    </button>
                 </div>
             </div>
 
-            <div class="flex justify-end">
-                <button wire:click="edit()"
-                    class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 mt-5 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
-                    Salvar
-                </button>
+            <div class="flex justify-center items-center gap-2">
+                <div class=" bg-white rounded-xl p-5 border border-neutral-200">
+                    
+                </div>
+
+                <div class=" bg-white rounded-xl p-5 border border-neutral-200">
+                    <h1 class="text-xl text-neutral-600 mt-5">Alterar a senha</h1>
+
+                    <div class="flex items-center gap-4 ">
+
+                        <div class="w-56">
+                            <x-form.label value="Senha atual" />
+                            <x-form.input type="password" wire:model="password" placeholder="********" />
+                        </div>
+
+                        <div class="w-56">
+                            <x-form.label value="Nova senha" />
+                            <x-form.input type="password" wire:model="newpassword" placeholder="********" />
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button wire:click="edit()"
+                            class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 mt-5 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                            Salvar
+                        </button>
+                    </div>
+                </div>
             </div>
+
         </div>
+
     </div>
 
 
