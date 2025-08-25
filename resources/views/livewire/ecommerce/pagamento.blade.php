@@ -27,7 +27,7 @@
                         </label>
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <input wire:model="pagamento" wire:click="formaPagamento()" type="radio" id="visa-credito"
                             name="hosting" value="Pix" class="hidden peer" required />
                         <label for="visa-credito"
@@ -44,7 +44,7 @@
                                 <h1 class="text-lg">Pix</h1>
                             </div>
                         </label>
-                    </div>
+                    </div> --}}
 
                     <div>
                         <input wire:model="pagamento" wire:click="formaPagamento()" type="radio" id="master-credito"

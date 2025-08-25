@@ -30,8 +30,8 @@ class Pessoa extends Component
 
     public function mount()
     {
-        if (Auth::check()) {
-            return redirect()->route('ecommerce.localizacao');
+        if (Auth::guard('customer')->check()) {
+            return redirect()->route('pagamento');
         }
     }
 
