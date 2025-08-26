@@ -2,6 +2,7 @@
 
 use App\Livewire\Auth\Custorme\Login;
 use App\Livewire\Auth\Custorme\Register;
+use App\Livewire\Ecommerce\DetalheProduto;
 use App\Livewire\Ecommerce\Finalizar;
 use App\Livewire\Ecommerce\PerfilCliente;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,8 @@ Route::get('/pagamento', function () {
 Route::get('/pedido', function () {
     return view('pages.ecommerce.pedido');
 })->name('pedido');
+
+Route::get('/produto/{product}', DetalheProduto::class)->name('detalhe-produto');
 
 Route::get('/finalizar/{codigo}', Finalizar::class)->name('finalizar');
 

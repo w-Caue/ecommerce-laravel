@@ -31,7 +31,7 @@
             <ul class="splide__list">
                 @foreach ($products as $product)
                     <li wire:key="{{ $product->id }}" class="splide__slide">
-                        <div class="border border-neutral-200 w-56 rounded-xl">
+                        <div class="border border-neutral-200 w-56 rounded-xl cursor-pointer">
                             <div class="">
                                 <img src="{{ $product->image }}"
                                     class="object-cover object-center rounded-t-xl h-40 w-full" alt="">
