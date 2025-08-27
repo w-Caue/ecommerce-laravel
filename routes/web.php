@@ -5,6 +5,7 @@ use App\Livewire\Auth\Custorme\Register;
 use App\Livewire\Ecommerce\DetalheProduto;
 use App\Livewire\Ecommerce\Finalizar;
 use App\Livewire\Ecommerce\PerfilCliente;
+use App\Livewire\Ecommerce\TodosProdutos;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -35,9 +36,11 @@ Route::get('/pedido', function () {
     return view('pages.ecommerce.pedido');
 })->name('pedido');
 
+Route::get('/finalizar/{codigo}', Finalizar::class)->name('finalizar');
+
 Route::get('/produto/{product}', DetalheProduto::class)->name('detalhe-produto');
 
-Route::get('/finalizar/{codigo}', Finalizar::class)->name('finalizar');
+Route::get('/produtos', TodosProdutos::class)->name('todos-produtos');
 
 Route::middleware(['auth:customer'])->prefix('ecommerce')->name('ecommerce.')->group(function () {
     Route::get('/perfil', function () {

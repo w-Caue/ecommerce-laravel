@@ -35,7 +35,7 @@
     <x-ecommerce.navbar />
 
     <div class="flex flex-col flex-1 w-full">
-        <div class="mt-2">
+        <div class="mt-32">
             {{ $slot ?? '' }}
         </div>
     </div>

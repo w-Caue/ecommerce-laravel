@@ -33,7 +33,7 @@
 
         <x-ecommerce.navbar />
 
-        <div class="grid grid-cols-2 items-center px-5 mt-10">
+        <div class="grid grid-cols-2 items-center px-5 mt-32">
             <div class="px-10 space-y-4">
                 <span class="text-sm font-bold text-orange-500">
                     bem vindo a eLolja
@@ -59,10 +59,8 @@
     </header>
 
     <main class="mx-25 my-26">
-        <section class="bg-white rounded-2xl">
-            <div class="p-3">
-                @livewire('ecommerce.produtos')
-            </div>
+        <section class="">
+            @livewire('ecommerce.produtos')
         </section>
 
     </main>

@@ -4,7 +4,7 @@
 
 <select
     {{ $attributes->class([
-        'block p-2 text-xs uppercase w-full focus:border-neutral-500 focus:outline-none focus:shadow-outline-blue rounded-lg border border-neutral-400 dark:text-white dark:bg-gray-900 dark:border-gray-600',
+        'text-neutral-700 font-black block p-2 text-sm w-full focus:border-neutral-400 focus:outline-none focus:shadow-outline-blue rounded-lg bg-white border border-neutral-300',
         'border-red-500' => $error,
     ]) }}
     @isset($name) name="{{ $name }}" @endif

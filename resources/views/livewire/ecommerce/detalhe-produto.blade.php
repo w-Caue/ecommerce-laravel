@@ -17,7 +17,8 @@
         </div>
 
         <div class="w-full h-auto px-8 py-10 rounded-xl shadow-md bg-white md:w-1/3">
-            <h1 class="text-3xl uppercase font-black text-orange-500" >R$ {{ number_format($product->price, 2, ',', ' ') }}</h1> 
+            <h1 class="text-3xl uppercase font-black text-orange-500">R$
+                {{ number_format($product->price, 2, ',', ' ') }}</h1>
 
             <button
                 x-on:click="Livewire.dispatchTo('ecommerce.carrinho-botao', 'adicionarItem', {codigo:'{{ $product->id ?? '' }}', nome:'{{ $product->name ?? '' }}', descricao:'{{ $product->description ?? '' }}', quantidade: '{{ 1 }}', preco:'{{ $product->price ?? '' }}', img: '{{ $product->image ?? '' }}'})"
@@ -40,5 +41,9 @@
             </a>
         </div>
 
+    </div>
+
+    <div class="mx-7 px-10 py-5 rounded-xl shadow-md bg-white mt-7">
+        <h1 class="text-sm uppercase font-black text-neutral-400">Produtos relacionados</h1>
     </div>
 </div>
