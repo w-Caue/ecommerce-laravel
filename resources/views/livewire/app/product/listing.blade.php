@@ -46,6 +46,19 @@
                 </button>
             </div>
 
+
+
+            <button x-on:click="$dispatch('open-modal', { name : 'category' })"
+                class="flex items-center gap-1 text-xs uppercase text-neutral-600 border border-neutral-300 px-3 py-2 rounded-md transition-all hover:scale-95 hover:cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-ungroup-icon lucide-ungroup">
+                    <rect width="8" height="6" x="5" y="4" rx="1" />
+                    <rect width="8" height="6" x="11" y="14" rx="1" />
+                </svg>
+                <h1 class="hidden sm:block">Categorias</h1>
+            </button>
+
             <button x-on:click="$dispatch('open-modal', { name : 'new-package' })"
                 class="flex items-center gap-1 text-xs uppercase text-white bg-purple-500 px-3 py-2 rounded-md hover:bg-purple-700 transition-all hover:scale-95 hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none"
@@ -60,7 +73,7 @@
                     <line x1="12" x2="12" y1="22" y2="12" />
                 </svg>
 
-                <h1 class="hidden sm:block">Cadastrar</h1>
+                <h1 class="hidden sm:block">Novo Produto</h1>
             </button>
         </div>
 
@@ -147,7 +160,7 @@
                     <tbody>
                         @foreach ($products as $product)
                             <tr wire:key="{{ $product->id }}"
-                                onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['codigo' => $product->id]) }}'"
+                                onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['product' => $product->id]) }}'"
                                 class="font-bold transition-all hover:cursor-pointer hover:scale-95">
                                 <td class="">
                                     <div
@@ -200,7 +213,7 @@
         <div class="flex flex-col justify-center items-center gap-4 mt-4 sm:hidden">
             @foreach ($products as $product)
                 <div wire:key="{{ $product->id }}"
-                    onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['codigo' => $product->id]) }}'"
+                    onclick="javascript:location.href='{{ route('admin.produtos.detalhe', ['product' => $product->id]) }}'"
                     class="flex border border-neutral-200 w-full rounded-xl transition-all hover:cursor-pointer hover:scale-95">
                     <div class="">
                         <img src="{{ $product->image }}" class="object-cover object-center rounded-xl size-26"
@@ -327,6 +340,92 @@
                 </div>
             </form>
 
+
+        @endslot
+    </x-modal.modal-medium>
+
+    <x-modal.modal-medium name="category" title="Categorias">
+        @slot('body')
+
+            @slot('icone')
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-package-plus-icon lucide-package-plus">
+                    <path d="M16 16h6" />
+                    <path d="M19 13v6" />
+                    <path
+                        d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                    <path d="m7.5 4.27 9 5.15" />
+                    <polyline points="3.29 7 12 12 20.71 7" />
+                    <line x1="12" x2="12" y1="22" y2="12" />
+                </svg>
+            @endslot
+
+            <div class="mt-2">
+                <button
+                    class="flex justify-center w-full bg-gray-100 rounded-md transition-all hover:scale-95 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-plus-icon lucide-plus">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-2 hidden sm:block">
+                <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
+                    <table class="min-w-full text-left text-sm text-surface">
+                        <thead class="">
+                            <tr class="text-xs uppercase text-neutral-500">
+                                <th scope="col" class="py-2 rounded-l-xl">
+                                    <div class="flex justify-center">
+                                        <div class="flex justify-center gap-1 items-center hover:cursor-pointer">
+                                            <h1 class="">Código</h1>
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th scope="col" class="px-6 py-2">
+                                    <div class="flex justify-center">
+                                        <div class="flex justify-center gap-1 items-center hover:cursor-pointer">
+                                            <h1 class="">Nome</h1>
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th scope="col" class="px-6 py-2 text-center">Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($categories as $category)
+                                <tr wire:key="{{ $category->id }}"
+                                    class="font-bold transition-all hover:cursor-pointer hover:scale-95">
+                                    <td class="">
+                                        <div
+                                            class="px-6 py-4 my-1 text-center text-red-500 border-l border-y rounded-l-xl">
+                                            #{{ $category->id }}
+                                        </div>
+                                    </td>
+
+                                    <td class="">
+                                        <div class="px-6 py-4 text-center border-y">
+                                            {{ $category->name }}
+                                        </div>
+                                    </td>
+
+                                    <td class="">
+                                        <div class="px-6 py-4 text-center border-y border-r rounded-r-xl">
+                                            {{ $category->name }}
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         @endslot
     </x-modal.modal-medium>

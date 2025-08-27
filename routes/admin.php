@@ -27,7 +27,7 @@ Route::middleware(['auth:web'])->prefix('admin')->name('admin.')->group(function
 
     Route::prefix('/produtos')->name('produtos.')->group(function () {
         Route::get('/', Listing::class)->name('listagem');
-        Route::get('/{codigo}', Detail::class)->name('detalhe');
+        Route::get('/{product}', Detail::class)->name('detalhe');
     });
 
     Route::prefix('/pedidos')->name('pedidos.')->group(function () {

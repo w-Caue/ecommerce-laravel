@@ -26,20 +26,18 @@ class ProductForm extends Form
 
     public $img;
 
-    public function setPackage($cod)
+    public function setPackage(Product $product)
     {
-        $package = Product::where('id', $cod)->first();
+        $this->cod = $product->id;
 
-        $this->cod = $cod;
+        $this->name = $product->name;
+        $this->description = $product->description;
 
-        $this->name = $package->name;
-        $this->description = $package->description;
+        $this->price = $product->price;
+        $this->stock = $product->stock;
 
-        $this->price = $package->price;
-        $this->stock = $package->stock;
-
-        $this->status = $package->active;
-        $this->img = $package->image;
+        $this->status = $product->active;
+        $this->img = $product->image;
     }
 
     public function edit()

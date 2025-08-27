@@ -3,6 +3,8 @@
 namespace App\Livewire\App\Product;
 
 use App\Livewire\Forms\Product\ProductForm;
+use App\Models\Product;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Component;
 
 class Detail extends Component
@@ -11,16 +13,21 @@ class Detail extends Component
 
     public ProductForm $form;
 
-    public function mount($codigo)
+    public function mount(Product $product)
     {
-        $this->codPackage = $codigo;
+        $this->codPackage = $product->id;
 
-        $this->form->setPackage($codigo);
+        $this->form->setPackage($product);
     }
 
     public function edit()
     {
         $this->form->edit();
+
+        return LivewireAlert::title('Salvo com Sucesso!')
+            // ->toast()
+            ->success()
+            ->show();
     }
 
     public function render()

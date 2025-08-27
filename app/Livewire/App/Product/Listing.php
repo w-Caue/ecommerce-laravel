@@ -2,6 +2,7 @@
 
 namespace App\Livewire\App\Product;
 
+use App\Models\Category;
 use App\Models\CustomerImage;
 use App\Models\Product;
 use Livewire\Attributes\Layout;
@@ -88,11 +89,18 @@ class Listing extends Component
         return $usuario;
     }
 
+    public function getCategories(){
+        $categories = Category::all();
+
+        return $categories;
+    }
+
     #[Layout('components.layouts.app')]
     public function render()
     {
         return view('livewire.app.product.listing', [
-            'products' => $this->dados()
+            'products' => $this->dados(),
+            'categories' => $this->getCategories()
         ]);
     }
 }
