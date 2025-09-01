@@ -89,7 +89,7 @@ class Detail extends Component
             ->show();
     }
 
-    #[Layout('components.layouts.app')]
+    #[Layout('layouts.app')]
     public function render()
     {
         return view('livewire.app.order.detail', [

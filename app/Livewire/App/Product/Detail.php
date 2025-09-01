@@ -3,6 +3,7 @@
 namespace App\Livewire\App\Product;
 
 use App\Livewire\Forms\Product\ProductForm;
+use App\Models\Category;
 use App\Models\Product;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Component;
@@ -30,8 +31,17 @@ class Detail extends Component
             ->show();
     }
 
+    public function getCategories()
+    {
+        $categories = Category::all();
+
+        return $categories;
+    }
+
     public function render()
     {
-        return view('livewire.app.product.detail');
+        return view('livewire.app.product.detail', [
+            'categories' => $this->getCategories(),
+        ]);
     }
 }

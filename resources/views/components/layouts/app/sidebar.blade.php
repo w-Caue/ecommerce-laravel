@@ -11,15 +11,15 @@
             '-left-64 sm:left-0': !sidebar.navOpen
         }">
 
-        <a href="{{ route('admin.contas') }}"
-            class="flex items-center gap-2 p-2 rounded-xl hover:bg-gray-100 hover:cursor-pointer"
+        <a href=""
+            class="flex items-center gap-2 "
             x-bind:class="sidebar.full ? 'justify-start m-2' : 'justify-center'">
 
-            <img src="{{ auth()->user()->image ?? '' }}"
-                class="object-cover object-center rounded-full size-14 border border-gray-100" alt="ft-perfil">
+            <img src="{{ asset('img/logo.png')}}"
+                class="object-cover object-center rounded-full size-14" alt="ft-logo">
 
-            <h1 class="font-black text-neutral-600" x-bind:class="sidebar.full ? '' : 'hidden'">
-                {{ auth()->user()->name ?? '' }}
+            <h1 class="font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500" x-bind:class="sidebar.full ? '' : 'hidden'">
+                Eloja
             </h1>
         </a>
 

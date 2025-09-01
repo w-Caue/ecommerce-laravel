@@ -181,7 +181,7 @@ class AccountSettings extends Component
         return $this->js('window.location.reload()');
     }
 
-    #[Layout('components.layouts.app')]
+    #[Layout('layouts.app')]
     public function render()
     {
         return view('livewire.app.account-settings', [

@@ -11,7 +11,7 @@ use Livewire\WithFileUploads;
 
 class Dashboard extends Component
 {
-    #[Layout('components.layouts.app')]
+    #[Layout('layouts.app')]
     public function render()
     {
         return view('livewire.app.dashboard');

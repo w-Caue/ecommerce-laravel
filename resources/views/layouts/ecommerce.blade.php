@@ -31,14 +31,16 @@
     @livewireStyles
 </head>
 
-<body class="font-semibold" style="background-image: url({{ asset('img/comercio.png') }})">
+<body class="font-semibold">
     <x-ecommerce.navbar />
 
-    <div class="flex flex-col flex-1 w-full">
-        <div class="mt-32">
-            {{ $slot ?? '' }}
+    <section class="mx-4 mt-16 p-4 rounded-xl" style="background-image: url({{ asset('img/comercio.png') }})">
+        <div class="flex flex-col flex-1 w-full">
+            <div class="">
+                {{ $slot ?? '' }}
+            </div>
         </div>
-    </div>
+    </section>
 
     @livewireScripts
 

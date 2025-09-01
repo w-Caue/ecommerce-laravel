@@ -44,7 +44,7 @@ class Listing extends Component
         return $orders->paginate(5);
     }
 
-    #[Layout('components.layouts.app')]
+    #[Layout('layouts.app')]
     public function render()
     {
         return view('livewire.app.order.listing', [

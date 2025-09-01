@@ -28,42 +28,46 @@
 
 </head>
 
-<body class="font-semibold" style="background-image: url({{ asset('img/comercio.png') }})">
-    <header class="">
+<body class="font-semibold">
+    <x-ecommerce.navbar />
 
-        <x-ecommerce.navbar />
+    <section class="mx-4 mt-22 p-4 rounded-xl" style="background-image: url({{ asset('img/comercio.png') }})">
+        <header class="mt-10">
 
-        <div class="grid grid-cols-2 items-center px-5 mt-32">
-            <div class="px-10 space-y-4">
-                <span class="text-sm font-bold text-orange-500">
-                    bem vindo a eLolja
-                </span>
+            <div class="">
+                <div class="flex flex-col justify-center items-center px-10 space-y-4">
+                    <h1 class="px-3 py-1 font-bold text-orange-500 bg-white rounded-full">
+                        bem vindo a eLolja
+                    </h1>
 
-                <h1 class="text-4xl text-gray-800">
-                    Venha conferir todos os nossos protudos, todos de alta qualidade e melhor preço.
-                </h1>
+                    <h1 class="text-5xl text-center text-gray-800 w-2/3">
+                        Venha conferir todos os nossos produtos e nossas promoções
+                    </h1>
 
-                <div>
-                    <button
-                        class="text-white py-2 px-3 rounded-3xl bg-blue-400 transition-all hover:bg-blue-500 hover:scale-90 hover:cursor-pointer">
-                        Saber mais
-                    </button>
+                    <h1 class="text-neutral-400 text-center px-10 w-1/2">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, voluptatem sint laudantium
+                        quasi!
+                    </h1>
+
+                    <div>
+                        <a href="{{ route('todos-produtos') }}"
+                            class="flex items-center gap-1 text-sm text-white bg-blue-500 p-2 rounded-full hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                            Todos os Produtos
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-center">
-                <img src="{{ asset('img/container.jpeg') }}" class="w-80 h-80 rounded-2xl" alt="container">
-            </div>
-        </div>
+        </header>
 
-    </header>
+        <main class="mx-25 my-16">
+            <section class="">
+                @livewire('ecommerce.produtos')
+            </section>
 
-    <main class="mx-25 my-26">
-        <section class="">
-            @livewire('ecommerce.produtos')
-        </section>
+        </main>
+    </section>
 
-    </main>
 
     @livewireScripts
 </body>

@@ -314,7 +314,9 @@
                     <div class="">
                         <x-form.label value="Categoria" />
                         <x-form.select wire:model="category">
-                            <option value="">Escolha</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </x-form.select>
                     </div>
 
@@ -347,33 +349,55 @@
     <x-modal.modal-medium name="category" title="Categorias">
         @slot('body')
 
-            @slot('icone')
-                <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-package-plus-icon lucide-package-plus">
-                    <path d="M16 16h6" />
-                    <path d="M19 13v6" />
-                    <path
-                        d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
-                    <path d="m7.5 4.27 9 5.15" />
-                    <polyline points="3.29 7 12 12 20.71 7" />
-                    <line x1="12" x2="12" y1="22" y2="12" />
-                </svg>
-            @endslot
+            <div class="" x-data="{ newCategory: false }">
+                <div class="mt-2">
+                    <button x-show="newCategory === false"
+                        class="flex justify-center w-full bg-gray-100 rounded-md transition-all hover:scale-95 cursor-pointer"
+                        x-on:click="newCategory = !newCategory">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-plus-icon lucide-plus">
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                        </svg>
+                    </button>
+                </div>
 
-            <div class="mt-2">
-                <button
-                    class="flex justify-center w-full bg-gray-100 rounded-md transition-all hover:scale-95 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-plus-icon lucide-plus">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                </button>
+                <div class="border border-neutral-200 rounded-xl p-4" x-cloak x-show="newCategory">
+                    <div class="flex justify-between">
+                        <h1 class="font-bold text-lg text-neutral-600 text-center">Nova Categoria</h1>
+
+                        <button class="transition-all hover:scale-95 cursor-pointer" x-on:click="newCategory = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-x-icon lucide-x">
+                                <path d="M18 6 6 18" />
+                                <path d="m6 6 12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-end gap-3">
+                        <div class="w-full">
+                            {{-- <x-form.label value="Nome" /> --}}
+                            <x-form.input wire:model="nameCategory" placeholder="Nome da Categoria" />
+                        </div>
+
+                        <button wire:click="saveCategory()"
+                            class="flex items-center gap-1 text-xs uppercase text-white bg-blue-500 px-3 py-2 rounded-md hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-check-icon lucide-check">
+                                <path d="M20 6 9 17l-5-5" />
+                            </svg>
+
+                            Salvar
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 mt-2 hidden sm:block">
+            <div class="overflow-y-auto max-h-56 sm:-mx-6 lg:-mx-8 mt-2 hidden sm:block">
                 <div class="inline-block min-w-full py-2 overflow-hidden sm:px-6 lg:px-8 ">
                     <table class="min-w-full text-left text-sm text-surface">
                         <thead class="">

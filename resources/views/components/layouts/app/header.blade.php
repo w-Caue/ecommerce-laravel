@@ -1,4 +1,4 @@
-<header class="py-2 border-b-2 mx-5 mt-7 border-gray-200 dark:border-gray-700">
+<header class="py-2 border-b-2 mx-5 mt-3 border-gray-200 dark:border-gray-700">
     <div class="flex items-center justify-between">
         <div class="flex my-1 space-x-3">
             <button x-on:click="sidebar.full = !sidebar.full" class="block lg:hidden focus:outline-none dark:text-white">
@@ -17,10 +17,9 @@
             </button>
 
             <div>
-                <h1
-                    class="font-black text-xl sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
-                    Elolja Admin
-                </h1>
+                @hasSection('titulo')
+                    <span class="text-xl font-bold text-blue-500">@yield('titulo')</span>
+                @endif
             </div>
         </div>
 
@@ -57,7 +56,7 @@
                 </button>
             </li>
 
-            <li class="flex">
+            {{-- <li class="flex">
                 <button x-on:click="$dispatch('open-modal-small', { name : 'logout' })"
                     class="bg-gray-200 border border-neutral-300 rounded-full transition-all hover:text-red-500 hover:scale-95 hover:cursor-pointer"
                     aria-label="Toggle color mode">
@@ -69,23 +68,16 @@
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                     </svg>
                 </button>
-            </li>
+            </li> --}}
 
             <!-- Profile menu -->
-            {{-- <li x-title="NavBar:ProfileMenu" x-data="{ isProfileMenuOpen: false }" class="relative" wfd-id="105">
-                <button class="flex items-center gap-3 text-blue-500"
-                    x-on:click="isProfileMenuOpen = !isProfileMenuOpen;" @keydown.escape="isProfileMenuOpen = false"
-                    @click.away="isProfileMenuOpen = false;" aria-label="Account" aria-haspopup="true" wfd-id="146">
-
-                    <span class="text-md font-bold tracking-widest hidden sm:block">
-                        Conta
-                    </span>
-
-                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                        </path>
-                    </svg>
+            <li x-title="NavBar:ProfileMenu" x-data="{ isProfileMenuOpen: false }" class="relative" wfd-id="105">
+                <button x-on:click="isProfileMenuOpen = !isProfileMenuOpen;" @keydown.escape="isProfileMenuOpen = false"
+                    @click.away="isProfileMenuOpen = false;"
+                    class="size-10 m-2 transition-all hover:text-red-500 hover:scale-95 hover:cursor-pointer"
+                    aria-label="Toggle color mode">
+                    <img src="{{ auth()->user()->image ?? '' }}"
+                        class="object-cover object-center rounded-full  border border-gray-100" alt="ft-perfil">
                 </button>
 
                 <template x-if="isProfileMenuOpen">
@@ -95,33 +87,52 @@
                         aria-label="submenu">
 
                         <li>
-                            <div class="tracking-widest">
-                                <span class=" dark:text-gray-400">Acessando como:</span>
-                                <h1 class="text-md">{{ Auth::user()->NOME }}</h1>
+                            <div class="">
+                                <span class=" dark:text-neutral-500">Acessando como:</span>
+                                <h1 class="text-blue-500">{{ auth()->user()->name }}</h1>
                             </div>
                         </li>
 
                         <div class="border dark:border-gray-700"></div>
 
                         <li class="flex">
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                class="inline-flex items-center w-full py-1 text-xs font-semibold uppercase transition-colors duration-150 rounded-md hover:bg-red-100 hover:text-gray-800 dark:hover:bg-red-800 dark:hover:text-gray-200">
-                                <svg class="w-5 h-5 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path
-                                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
-                                    </path>
+                            <a href="{{ route('admin.contas') }}"
+                                class="inline-flex items-center w-full p-1 text-xs font-semibold uppercase transition-colors duration-150 rounded-md hover:bg-blue-100 hover:text-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 mr-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-user-round-cog-icon lucide-user-round-cog">
+                                    <path d="m14.305 19.53.923-.382" />
+                                    <path d="m15.228 16.852-.923-.383" />
+                                    <path d="m16.852 15.228-.383-.923" />
+                                    <path d="m16.852 20.772-.383.924" />
+                                    <path d="m19.148 15.228.383-.923" />
+                                    <path d="m19.53 21.696-.382-.924" />
+                                    <path d="M2 21a8 8 0 0 1 10.434-7.62" />
+                                    <path d="m20.772 16.852.924-.383" />
+                                    <path d="m20.772 19.148.924.383" />
+                                    <circle cx="10" cy="8" r="5" />
+                                    <circle cx="18" cy="18" r="3" />
+                                </svg>
+                                <span>Conta</span>
+                            </a>
+                        </li>
+                        <li class="flex">
+                            <button x-on:click="$dispatch('open-modal-small', { name : 'logout' })"
+                                class="inline-flex items-center w-full p-1 text-xs font-semibold uppercase transition-colors duration-150 rounded-md hover:bg-red-100 hover:text-gray-800 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 mr-3" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                                    <path d="m16 17 5-5-5-5" />
+                                    <path d="M21 12H9" />
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                                 </svg>
                                 <span>Sair</span>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                            </button>
                         </li>
                     </ul>
                 </template>
-            </li> --}}
+            </li>
             <!-- Profile menu -->
         </ul>
     </div>

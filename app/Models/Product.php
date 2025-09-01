@@ -13,5 +13,6 @@ class Product extends Model
         'image',
         'stock',
         'active',
+        'category_id',
     ];
 }

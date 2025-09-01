@@ -72,7 +72,9 @@
                         <x-form.label value="Categoria" />
                         <div class="w-full">
                             <x-form.select wire:model="form.category">
-                                <option value="">Escolha</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </x-form.select>
                         </div>
                     </div>

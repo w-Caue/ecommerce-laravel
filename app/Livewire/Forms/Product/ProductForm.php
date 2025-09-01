@@ -26,6 +26,8 @@ class ProductForm extends Form
 
     public $img;
 
+    public $category;
+
     public function setPackage(Product $product)
     {
         $this->cod = $product->id;
@@ -35,6 +37,8 @@ class ProductForm extends Form
 
         $this->price = $product->price;
         $this->stock = $product->stock;
+
+        $this->category = $product->category_id;
 
         $this->status = $product->active;
         $this->img = $product->image;
@@ -59,6 +63,7 @@ class ProductForm extends Form
             'price' => $this->price,
             'stock' => $this->stock,
             'active' => $this->status,
+            'category_id' => $this->category,
             // 'image' => $blob,
         ]);
 

@@ -5,10 +5,12 @@ namespace App\Livewire\App\Product;
 use App\Models\Category;
 use App\Models\CustomerImage;
 use App\Models\Product;
+use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use phpDocumentor\Reflection\Types\This;
 
 class Listing extends Component
 {
@@ -27,9 +29,13 @@ class Listing extends Component
 
     public $price;
 
+    public $category;
+
     public $stock;
 
     public $img;
+
+    public $nameCategory;
 
     public function sortBy($field)
     {
@@ -76,6 +82,7 @@ class Listing extends Component
             'price' => $this->price,
             'stock' => $this->stock,
             'image' => $blob,
+            'category_id' => $this->category,
         ]);
 
         // $usuario = CustomerImage::create([
@@ -89,13 +96,30 @@ class Listing extends Component
         return $usuario;
     }
 
-    public function getCategories(){
+    public function getCategories()
+    {
         $categories = Category::all();
 
         return $categories;
     }
 
-    #[Layout('components.layouts.app')]
+    public function saveCategory()
+    {
+        $category = Category::create([
+            'name' => $this->nameCategory
+        ]);
+
+        if ($category->save()) {
+            $this->nameCategory = "";
+
+            return LivewireAlert::title('Salvo com Sucesso!')
+                ->toast()
+                ->success()
+                ->show();
+        }
+    }
+
+    #[Layout('layouts.app')]
     public function render()
     {
         return view('livewire.app.product.listing', [

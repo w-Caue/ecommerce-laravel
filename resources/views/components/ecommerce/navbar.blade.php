@@ -1,6 +1,8 @@
 <div class="fixed w-full top-0 z-50">
-    <nav class="py-2 px-6 flex justify-between items-center gap-7 bg-gray-50">
-        <a href="/" class="text-xl font-black text-blue-500">eLolja</a>
+    <nav class="py-1 px-6 flex justify-between items-center gap-7 bg-white">
+        <a href="/" class="">
+            <img class="w-26" src="{{ asset('img/logo-nome2.png') }}" alt="">
+        </a>
 
         <div class="w-[33%]">
             <x-ecommerce.search />
@@ -101,9 +103,9 @@
         </div>
     </nav>
 
-    <div class="flex justify-center items-center gap-7 p-2 font-bold text-neutral-600 bg-orange-200">
+    {{-- <div class="flex justify-center items-center gap-7 p-2 font-bold text-neutral-600 bg-orange-200">
         <a href="{{ route('todos-produtos') }}" class="hover:underline hover:underline-offset-4 decoration-2">Produtos</a>
 
         <a href="" class="hover:underline hover:underline-offset-4 decoration-2">Contato</a>
-    </div>
+    </div> --}}
 </div>
