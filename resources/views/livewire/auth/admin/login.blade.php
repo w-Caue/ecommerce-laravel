@@ -1,8 +1,7 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Área Admin')" :description="__('Entre com seu email e senha')" />
-
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <div class="text-center">
+        <h1 class="text-2xl">Faça o <span class="text-[#164482]">Login</span></h1>
+    </div>
 
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->

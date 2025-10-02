@@ -11,15 +11,14 @@
             '-left-64 sm:left-0': !sidebar.navOpen
         }">
 
-        <a href=""
-            class="flex items-center gap-2 "
+        <a href="" class="flex items-center gap-2 "
             x-bind:class="sidebar.full ? 'justify-start m-2' : 'justify-center'">
 
-            <img src="{{ asset('img/logo.png')}}"
-                class="object-cover object-center rounded-full size-14" alt="ft-logo">
+            <img src="{{ asset('img/padrao.png') }}" class="object-cover object-center rounded-full size-14" alt="ft-logo">
 
-            <h1 class="font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500" x-bind:class="sidebar.full ? '' : 'hidden'">
-                Eloja
+            <h1 class="font-black text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500"
+                x-bind:class="sidebar.full ? '' : 'hidden'">
+                {{ session()->get('company')->name }}
             </h1>
         </a>
 

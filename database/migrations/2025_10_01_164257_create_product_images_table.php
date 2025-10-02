@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->double('price');
-            $table->integer('stock')->nullable();
-            $table->longText('image')->charset('binary')->nullable();
-            $table->enum('active', ['S', 'N'])->default('S');
+            $table->foreignId('product_id');
+            $table->longText('image')->charset('binary'); // aqui vai o binário
+            $table->string('mime_type');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -29,7 +28,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_images');
         Schema::enableForeignKeyConstraints();
     }
 };

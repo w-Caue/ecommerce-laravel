@@ -31,7 +31,7 @@
     <div x-data="imageViewer()" class="p-4 mt-7 bg-white rounded-2xl border border-neutral-200">
         <div class="grid grid-cols-3 gap-7">
             <div class="col-span-2">
-                <form enctype="multipart/form-data">
+                {{-- <form enctype="multipart/form-data">
                     <div class="shrink-0">
                         <div x-show="imageUrl">
                             <label class="mx-3 bg-white rounded-2xl transition-all cursor-pointer">
@@ -53,7 +53,11 @@
                             </label>
                         </div>
                     </div>
-                </form>
+                </form> --}}
+
+                <div>
+                    @livewire('app.product.product-images', ['product' => $codPackage], key($codPackage))
+                </div>
 
                 <div>
                     <x-form.label value="Descrição" />

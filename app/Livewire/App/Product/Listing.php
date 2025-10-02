@@ -5,6 +5,7 @@ namespace App\Livewire\App\Product;
 use App\Models\Category;
 use App\Models\CustomerImage;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Jantinnerezo\LivewireAlert\Facades\LivewireAlert;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -76,7 +77,7 @@ class Listing extends Component
             $blob = 'data:' . $mimetype . ';base64,' . $base64;
         }
 
-        $usuario = Product::create([
+        $product = Product::create([
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
@@ -84,6 +85,14 @@ class Listing extends Component
             'image' => $blob,
             'category_id' => $this->category,
         ]);
+
+        if($this->img){
+            ProductImage::create([
+                'product_id' => $product->id,
+                'image' => $blob, // conteúdo binário
+                'mime_type' => $mimetype,
+            ]);
+        }
 
         // $usuario = CustomerImage::create([
         //     'image' => $blob,
@@ -93,7 +102,7 @@ class Listing extends Component
 
         $this->reset();
 
-        return $usuario;
+        return $product;
     }
 
     public function getCategories()

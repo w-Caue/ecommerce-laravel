@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth\Admin;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class Login extends Component
 {
     public $email;
+
     public $password;
 
     public function login()
@@ -26,6 +28,10 @@ class Login extends Component
         if (!$pass) {
             return;
         }
+
+        $company = Company::where('id', $user->company_id)->first();
+
+        session()->put('company', $company);
 
         Auth::guard('web')->login($user, false);
         return redirect()->route('admin.dashboard');

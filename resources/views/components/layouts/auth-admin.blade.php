@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin ELolja</title>
+    <title>Foco</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,21 +27,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-{{-- <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b"
-    style="background-image: url({{ asset('img/comercio.png') }})">
+{{-- <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b">
     <div
         class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div
             class="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r dark:border-neutral-800">
             <div class="absolute inset-0 bg-neutral-900"></div>
-            <a href="/" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
-                <span class="flex h-10 w-10 items-center justify-center rounded-md">
-                    <img class="mr-2 h-7 fill-current text-white" src="{{ asset('img/logorica.png') }}"
-                        alt="logo rica informática">
-                </span>
-                Elolja
-            </a>
 
+            <div class="h-full flex justify-center items-center">
+                <a href="/" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
+                    <span class="flex items-center justify-center rounded-md">
+                        <img class="mr-2 w-96 fill-current rounded-2xl" src="{{ asset('img/foco-white.jpg') }}"
+                            alt="logo">
+                    </span>
+                </a>
+            </div>
         </div>
         <div class="w-full lg:p-8">
             <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -58,7 +58,21 @@
     @livewireScripts
 </body> --}}
 
-<body class="min-h-screen antialiased" 
+<body class="font-bold text-[#2c3e50] min-h-screen bg-white antialiased">
+    <div class="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+        <div class="flex sm:flex-row flex-col justify-center gap-6 rounded-xl border shadow-xs">
+            <a href="/" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
+                <img class="mr-2 w-96 fill-current rounded-2xl" src="{{ asset('img/foco-white.jpg') }}" alt="logo">
+            </a>
+
+            <div class="">
+                <div class="px-10 py-8">{{ $slot }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{{-- <body class="min-h-screen antialiased" 
     style="background-image: url({{ asset('img/comercio.png') }})">
     <div class="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
         <div class="flex w-full max-w-md flex-col gap-6">
@@ -78,6 +92,6 @@
             </div>
         </div>
     </div>
-</body>
+</body> --}}
 
 </html>

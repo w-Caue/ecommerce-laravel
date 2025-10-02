@@ -1,111 +1,39 @@
-<div class="fixed w-full top-0 z-50">
-    <nav class="py-1 px-6 flex justify-between items-center gap-7 bg-white">
-        <a href="/" class="">
-            <img class="w-26" src="{{ asset('img/logo-nome2.png') }}" alt="">
-        </a>
+<nav class="fixed w-full top-0 z-50 py-3 px-6 flex justify-between items-center gap-7 bg-white">
+    <ul class="hidden sm:flex items-center gap-5">
+        <li>Planos</li>
+        <li>Sobre nós</li>
+        <li>Contato</li>
+    </ul>
 
-        <div class="w-[33%]">
-            <x-ecommerce.search />
+    <div x-data="{ menu: false }" class="block sm:hidden">
+        <button x-on:click="menu = !menu" class="text-[#366C90] p-2 cursor-pointer hover:scale-95 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu">
+                <path d="M4 5h16" />
+                <path d="M4 12h16" />
+                <path d="M4 19h16" />
+            </svg>
+        </button>
+
+        <div x-show="menu" class="absolute bg-gray-100 w-72 rounded-lg">
+            <ul class="p-2">
+                <li>Planos</li>
+                <li>Sobre nós</li>
+                <li>Contato</li>
+            </ul>
         </div>
+    </div>
 
-        <div x-data="data()" class="flex gap-10">
-            <div class="flex relative">
-                @if (Auth::guard('customer')->user())
-                    <button x-on:click="openUser = !openUser"
-                        class="flex items-center gap-2 font-black text-sm text-neutral-600 transition duration-300 cursor-pointer">
-                        <img src="{{ auth()->guard('customer')->user()->image }}"
-                            class="object-cover object-center rounded-full h-10 w-10"
-                            alt="Avatar Tailwind CSS Component" />
-                        Olá, <span class=" text-blue-500">{{ auth()->guard('customer')->user()->name }}</span>
+    {{-- <img class="absolute left-[45%] w-14" src="{{ asset('img/logo/logo-foco.png') }}" alt="logo foco"> --}}
 
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-chevron-down-icon lucide-chevron-down">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-                    <div x-show="openUser" class="">
-                        <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
-                            x-transition:leave-end="opacity-0" @click.away="openUser=false"
-                            @keydown.escape="openUser=false"
-                            class="absolute right-10 z-50 p-2 mt-16 space-y-2 w-48 font-bold text-neutral-600 bg-white border border-gray-100 rounded-xl"
-                            aria-label="submenu">
+    <a href="{{ route('admin.login') }}" class="flex items-center gap-1 hover:bg-gray-100 p-1 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+        </svg>
 
-                            <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                    href="{{ route('ecommerce.perfil') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 mr-3" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round">
-                                        <circle cx="12" cy="8" r="5" />
-                                        <path d="M20 21a8 8 0 0 0-16 0" />
-                                    </svg>
-                                    <span>Meus Dados</span>
-                                </a>
-                            </li>
-                            <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                    href="{{ route('ecommerce.pedidos') }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 mr-3" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
-                                        <circle cx="8" cy="21" r="1" />
-                                        <circle cx="19" cy="21" r="1" />
-                                        <path
-                                            d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                                    </svg>
-
-                                    <span>Meus Pedidos</span>
-                                </a>
-                            </li>
-
-                            <li class="flex">
-                                <a class="inline-flex items-center w-full px-2 py-1 text-sm transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800"
-                                    href="{{ route('ecommerce.logout') }}">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4 mr-3" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
-                                        <path d="m16 17 5-5-5-5" />
-                                        <path d="M21 12H9" />
-                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                    </svg>
-
-                                    <span>Sair da Conta</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
-
-                @if (Auth::guard('customer')->user() == null)
-                    <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-9 text-blue-500">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        </svg>
-
-                        <div class="flex flex-col font-semibold text-sm text-start text-gray-700 hover:text-gray-900">
-                            <div class="text-sm font-bold text-blue-500">
-                                <a class="transition hover:underline" href="{{ route('login') }}"> Entre</a>
-                                <span class="text-gray-700">ou</span>
-                            </div>
-                            <a class="text-blue-500 text-sm font-bold transition hover:underline"
-                                href="{{ route('register') }}">Cadastra-se</a>
-                        </div>
-                    </div>
-                @endif
-            </div>
-
-            @livewire('ecommerce.carrinho-botao')
-        </div>
-    </nav>
-
-    {{-- <div class="flex justify-center items-center gap-7 p-2 font-bold text-neutral-600 bg-orange-200">
-        <a href="{{ route('todos-produtos') }}" class="hover:underline hover:underline-offset-4 decoration-2">Produtos</a>
-
-        <a href="" class="hover:underline hover:underline-offset-4 decoration-2">Contato</a>
-    </div> --}}
-</div>
+        <h1>Fazer <span class="text-[#164482]">Login</span> </h1>
+    </a>
+</nav>

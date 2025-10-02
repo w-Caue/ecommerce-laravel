@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->double('price');
-            $table->integer('stock')->nullable();
-            $table->longText('image')->charset('binary')->nullable();
-            $table->enum('active', ['S', 'N'])->default('S');
             $table->timestamps();
         });
     }
@@ -29,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('companies');
         Schema::enableForeignKeyConstraints();
     }
 };

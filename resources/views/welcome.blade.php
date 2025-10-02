@@ -23,50 +23,48 @@
         * {
             font-family: "Nunito", sans-serif;
             letter-spacing: 2px;
+            /* color: ; */
         }
     </style>
 
 </head>
 
-<body class="font-semibold">
+<body class="font-bold text-[#2c3e50]">
     <x-ecommerce.navbar />
 
-    <section class="mx-4 mt-22 p-4 rounded-xl" style="background-image: url({{ asset('img/comercio.png') }})">
-        <header class="mt-10">
+    <header class="mx-4">
+        <section class="font-bold grid sm:grid-cols-2 items-center py-3 px-5">
+            <div class="text-start space-y-3">
+                <h1 class="text-3xl sm:text-5xl">
+                    Organize, controle e <span class="text-[#164482]">cresça</span>. Com <span
+                        class="text-[#164482]">Foco</span>, sua empresa vai mais
+                    <span class="text-[#164482]">longe</span>.
+                </h1>
+                <p>
+                    Mais <span class="text-[#164482] mx-2">produtividade</span>, menos<span class="text-[#164482] mx-2">complicação</span>.
+                </p>
 
-            <div class="">
-                <div class="flex flex-col justify-center items-center px-10 space-y-4">
-                    <h1 class="px-3 py-1 font-bold text-orange-500 bg-white rounded-full">
-                        bem vindo a eLolja
-                    </h1>
-
-                    <h1 class="text-5xl text-center text-gray-800 w-2/3">
-                        Venha conferir todos os nossos produtos e nossas promoções
-                    </h1>
-
-                    <h1 class="text-neutral-400 text-center px-10 w-1/2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, voluptatem sint laudantium
-                        quasi!
-                    </h1>
-
-                    <div>
-                        <a href="{{ route('todos-produtos') }}"
-                            class="flex items-center gap-1 text-sm text-white bg-blue-500 p-2 rounded-full hover:bg-blue-700 transition-all hover:scale-95 hover:cursor-pointer">
-                            Todos os Produtos
-                        </a>
-                    </div>
+                <div>
+                    <button
+                        class="text-white text-sm bg-[#164482] p-2 rounded-full cursor-pointer hover:scale-95 transition-all">
+                        Consultar
+                    </button>
                 </div>
             </div>
 
-        </header>
+            <div class="mt-4 sm:mt-0">
+                <img src="{{ asset('img/foco-page.jpg') }}" alt="page" />
+            </div>
+        </section>
 
-        <main class="mx-25 my-16">
+    </header>
+
+    {{-- <main class="mx-25 my-16">
             <section class="">
                 @livewire('ecommerce.produtos')
             </section>
 
-        </main>
-    </section>
+        </main> --}}
 
 
     @livewireScripts
